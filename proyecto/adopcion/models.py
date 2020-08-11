@@ -34,8 +34,8 @@ class Animal(models.Model):
     tipo_animal = models.CharField(verbose_name='Tipo de animal', max_length=40, choices=TipoAnimal.choices, null=False, blank=False)
     raza = models.CharField(verbose_name='Raza', max_length=255, null=False, blank=False)
     tamaño = models.CharField(verbose_name='Tamaño', max_length=40, choices=Tamaño.choices, null=False, blank=False)
-    # foto1 = models.ImageField()   Configurar Pillow
-    # foto2 = models.ImageField()   Configurar Pillow
+    foto1 = models.ImageField(verbose_name="Foto 1", blank=True, null=True, upload_to='foto1')
+    foto2 = models.ImageField(verbose_name="Foto 2", blank=True, null=True, upload_to='foto2')
     edad = models.IntegerField(verbose_name='Edad', null=False, blank=False)
     sexo = models.CharField(verbose_name='Sexo', max_length=40, choices=Sexo.choices, null=False, blank=False)
     descripcion = models.TextField(verbose_name='Descripcion', null=False, blank=False)
