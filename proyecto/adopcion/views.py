@@ -9,12 +9,8 @@ from .models import Animal
 # Create your views here.
 
 
-def adopcion(request):
-    return render(request, 'adopcion/adopcion.html')
 
-
-
-class AdopcionListView(ListView ):
+class AdopcionListView(ListView):
     
     model = Animal
     template_name = 'adopcion/adopcion_list.html'
