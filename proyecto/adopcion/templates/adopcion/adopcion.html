@@ -1,0 +1,42 @@
+{% extends "core/base.html" %}
+
+
+{% block title %} En adopcion {% endblock title %}
+
+{% block image %} {% load static %} {% static 'core/img/adopcion-bg.jpg'%} {% endblock image %}
+
+{% block cabecera %}
+<h1> Almanimal</h1>
+<p> Una ONG de Mendiolaza</p>
+{% endblock cabecera %}
+
+{% block contenido %}
+
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Nombre del perro</h5>
+    <p class="card-text"> Descripcion del perro</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Nombre del perro</h5>
+    <p class="card-text"> Descripcion del perro</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Nombre del perro</h5>
+    <p class="card-text"> Descripcion del perro</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+
+{% endblock contenido %}

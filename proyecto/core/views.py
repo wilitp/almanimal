@@ -10,9 +10,6 @@ def home(request):
 def about(request):
     return render(request, 'core/about.html')
 
-def adopcion(request):
-    return render(request, 'core/adopcion.html')
-
 def contacto(request):
     return render(request, 'core/contact.html')
 
