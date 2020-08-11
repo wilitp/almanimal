@@ -38,13 +38,15 @@ class Animal(models.Model):
     # foto2 = models.ImageField()   Configurar Pillow
     edad = models.IntegerField(verbose_name='Edad', null=False, blank=False)
     sexo = models.CharField(verbose_name='Sexo', max_length=40, choices=Sexo.choices, null=False, blank=False)
+    descripcion = models.TextField(verbose_name='Descripcion', null=False, blank=False)
     caracter = models.TextField(verbose_name='Caracter', null=True, blank=True)
     vacunado = models.BooleanField(verbose_name='Vacunado', null=False, blank=False)
     desparasitado = models.BooleanField(verbose_name='Desparacitado', null=False, blank=False)
     castrado = models.BooleanField(verbose_name='Castrado', null=False, blank=False)
     comentario = models.TextField(verbose_name='Comentarios', null=True, blank=True)
-    created = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creacion')
-    updated = models.DateTimeField(auto_now=True,verbose_name='Ultima actualizacion')
+    publicado = models.BooleanField(verbose_name='Publicado', default=False)
+    creado = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creacion')
+    actualizado = models.DateTimeField(auto_now=True,verbose_name='Ultima actualizacion')
 
 
 
