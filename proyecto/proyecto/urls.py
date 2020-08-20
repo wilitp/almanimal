@@ -28,6 +28,9 @@ urlpatterns = [
     # Adopcion app urls
     path('', include('core.urls')),
 
+    # Blog app urls
+    path('', include('blog.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

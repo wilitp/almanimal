@@ -1,0 +1,42 @@
+{% extends "core/base.html" %}
+
+{% load humanize %}
+
+
+{% block title %} Blogs {% endblock title %}
+
+{% block image %} {% load static %} {% static 'core/img/blog-bg.jpg'%} {% endblock image %}
+
+{% block cabecera %}
+<h1> Almanimal</h1>
+<p> Una ONG de Mendiolaza</p>
+{% endblock cabecera %}
+
+{% block contenido %}
+    
+    {% if blog_list.count == 0 %}
+    <center>
+        <br/>
+        <p>No hay blogs publicados actualmente</p>
+    </center>
+    {% endif %}
+    {% for blog in blog_list %}
+
+        <br/>
+    
+        <div class="card mb-3">
+            <img class="card-img-top" src="{{ blog.photo.url }}" alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">{{ blog.title }}</h5>
+            <p class="card-text" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{ blog.blog_body }}</p>
+            <a href="{% url 'blog_detail' pk=blog.pk title=blog.title %}" class="btn btn-primary">Leer más</a>
+            <p class="card-text"><small class="text-muted">Actualizado {{ blog.last_updated | naturaltime }} por {{ blog.author }}</small></p>
+            </div>
+        </div>
+
+        <br/>
+
+    {% endfor %}
+
+
+{% endblock contenido %}
