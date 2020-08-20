@@ -457,7 +457,7 @@ footer .copyright {
     padding: 25px 35px
 }
 
-.card-img-top {
+#blog_list_img {
     object-fit: cover; 
     height: 480px;
 }
