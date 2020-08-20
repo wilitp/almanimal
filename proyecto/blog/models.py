@@ -7,7 +7,7 @@ class Blog(models.Model):
     title = models.CharField("Título", max_length=50, default="")
     photo = models.ImageField("Foto de encabezado", upload_to="blog_photo", blank=False, null=False, default="")
     blog_body = models.TextField("Texto")
-    publicated = models.BooleanField("Publicado", default=True)
+    published = models.BooleanField("Publicado", default=True)
     created_date = models.DateTimeField("Fecha de creación", auto_now_add=True)
     last_updated = models.DateTimeField("Última actualización", auto_now=True)
 

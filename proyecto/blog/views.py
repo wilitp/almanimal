@@ -8,7 +8,7 @@ from .models import Blog
 class BlogListView(ListView):
 
     context_object_name = 'blog_list'
-    queryset = Blog.objects.order_by('-id').filter(publicated=True)
+    queryset = Blog.objects.order_by('-id').filter(published=True)
     template_name = "blog/blog_list.html"
 
 class BlogDetailView(DetailView):
