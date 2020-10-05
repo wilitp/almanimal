@@ -12,7 +12,12 @@
 
 {% block contenido %}
 
-
+  {% if object_list.count == 0 %}
+    <center>
+        <br/>
+        <p>No hay animales en adopcion publicados actualmente</p>
+    </center>
+    {% endif %}
   
   <div class="row">
 
