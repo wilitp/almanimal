@@ -1,0 +1,51 @@
+{% extends "core/base.html" %}
+
+
+{% block title %} {{ object.title | title }} {% endblock title %}
+
+{% block image %} {% load static %} {{ object.photo.url }} {% endblock image %}
+
+{% block cabecera %}
+<h1> {{ object.title }}</h1>
+{% endblock cabecera %}
+
+{% block contenido %}
+
+    <!-- Page Content -->
+  <div class="container">
+
+    <a href="{% url 'blog' %}">&larr; Volver</a>
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+
+        <!-- Title -->
+        <h1 class="mt-4">{{object.title | title}}</h1>
+
+        <!-- Author -->
+        <p class="lead">
+          por {{object.author | title}}
+        </p>
+
+        <hr>
+
+        <p>{{object.blog_body}}</p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Actualizado el {{object.last_updated}}</p>
+        <p>Creado el {{object.created_date}}</p>
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+
+{% endblock contenido %}

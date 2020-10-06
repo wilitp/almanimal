@@ -1,0 +1,33 @@
+{% extends "core/base.html" %}
+
+
+{% block title %} En adopcion {% endblock title %}
+
+{% block image %} {% load static %} {% static 'core/img/adopcion-bg.jpg'%} {% endblock image %}
+
+{% block cabecera %}
+<h1> Almanimal</h1>
+<p> Una ONG de Mendiolaza</p>
+{% endblock cabecera %}
+
+{% block contenido %}
+
+  <div class="column">
+
+    <p>Nombre: {{object.nombre}}</p>  
+    <p>tipo animal: {{object.tipo_animal}}</p>
+    <p>raza: {{object.raza}}</p>
+    <p>sexo: {{object.sexo}}</p>
+    <p>descripcion: {{object.descripcion}}</p>
+    <p>caracter: {{object.caracter}}</p>
+    <p>vacunado: {{object.vacunado}}</p>
+    <p>desparasitado: {{object.desparasitado}}</p>
+    <p>castrado: {{object.castrado}}</p>
+    <p>comentario: {{object.comentario}}</p>
+    <p>publicado: {{object.publicado}}</p>
+    <p>creado: {{object.creado}}</p>
+    <p>actualizado: {{object.actualizado}}</p>
+    
+  </div>
+
+{% endblock contenido %}

@@ -1,0 +1,39 @@
+{% extends "core/base.html" %}
+
+
+{% block title %} En adopcion {% endblock title %}
+
+{% block image %} {% load static %} {% static 'core/img/adopcion-bg.jpg'%} {% endblock image %}
+
+{% block cabecera %}
+<h1> Almanimal</h1>
+<p> Una ONG de Mendiolaza</p>
+{% endblock cabecera %}
+
+{% block contenido %}
+
+
+  
+  <div class="row">
+
+  {% for animal in object_list %}
+  
+    <div class="card m-3" style="width: 20rem;">
+
+    {% if animal.foto1 %}
+      <img class="card-img-top" src="{{animal.foto1.url}}" height="200" alt="Card image cap">
+    {% else %}
+      <img class="card-img-top" src="{% static 'adopcion/img/no-image.png' %}" height="200" alt="Card image cap">
+    {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ animal.nombre }}</h5>
+        <p class="card-subtitle"> {{ animal.tipo_animal }}, {{ animal.raza }}</p>
+        <p class="card-text"> {{ animal.descripcion|truncatechars:100 }}</p>
+        <a href="{% url 'adopcion-detail' animal.pk %}" class="btn btn-primary">Detalle</a>
+      </div>
+    </div>
+  {% endfor %}
+
+  </div>
+
+{% endblock contenido %}
