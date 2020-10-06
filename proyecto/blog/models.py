@@ -12,6 +12,6 @@ class Blog(models.Model):
     last_updated = models.DateTimeField("Última actualización", auto_now=True)
 
     def __str__(self):
-        return "Blog de " + str(self.author)
+        return str(self.title) + " - " + str(self.author)
     
 

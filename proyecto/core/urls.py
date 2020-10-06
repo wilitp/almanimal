@@ -1,3 +1,12 @@
+<<<<<<< HEAD:almanimal/almanimal/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('', include('frontend.urls')),
+    path('admin/', admin.site.urls),
+]
+=======
 """core URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -25,3 +34,4 @@ urlpatterns = [
     path('contacto/', views.contacto, name='contacto'),
     path('donaciones/', views.donaciones, name='donaciones'),
 ]
+>>>>>>> usuarios:proyecto/core/urls.py

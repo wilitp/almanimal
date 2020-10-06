@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
 
 
-{% block title %} Blogs {% endblock title %}
+{% block title %} {{ object.title | title }} {% endblock title %}
 
 {% block image %} {% load static %} {{ object.photo.url }} {% endblock image %}
 
@@ -22,11 +22,11 @@
       <div class="col-lg-8">
 
         <!-- Title -->
-        <h1 class="mt-4">{{object.title}}</h1>
+        <h1 class="mt-4">{{object.title | title}}</h1>
 
         <!-- Author -->
         <p class="lead">
-          por {{object.author}}
+          por {{object.author | title}}
         </p>
 
         <hr>
