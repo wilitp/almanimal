@@ -31,6 +31,12 @@ urlpatterns = [
     # Blog app urls
     path('', include('blog.urls')),
 
+    # Usuarios app
+    path('', include('usuario.urls')),
+
+    # Allauth
+    path('accounts/', include('allauth.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

@@ -1,0 +1,96 @@
+{% extends "core/base.html" %}
+
+{% load humanize %}
+
+
+{% block title %} Blogs {% endblock title %}
+
+{% block image %} {% load static %} {% static 'core/img/login-bg.jpg'%} {% endblock image %}
+
+{% block cabecera %}
+<h1> Registráte </h1>
+{% endblock cabecera %}
+
+{% block contenido %}
+
+<style>
+
+.form-signin {
+  width: 100%;
+  max-width: 430px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input {
+  margin-bottom: 5px;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+</style>
+    
+<form class="form-signin" action="{% url 'registro' %}" method="POST">
+    {% csrf_token %}
+    {{ form.username }}
+    <p></p>
+    {{ form.password1 }}
+    <p id="pass1-message"></p>
+    {{ form.password2 }}
+    <p id="pass2-message"></p>
+    <br/>
+    <button class="btn btn-lg btn-primary btn-block" id="submit-btn" type="submit" disabled>Registrarse</button>
+    <br/>
+    <a href="{% url 'iniciar-sesion' %}">Si ya tenés cuenta, logueate</a>
+</form>
+
+<script>
+
+    $('#id_password1').on('paste keyup', function() {
+
+        var pass1 = $(this).val();
+
+        if (pass1.length < 8) {
+            $('#pass1-message').text("La contraseña debe contener, al menos, 8 caractéres.");
+            $('#submit-btn').attr('disabled', 'disabled');
+        }
+        else {
+            $('#pass1-message').text("");
+            $('#submit-btn').removeAttr('disabled', 'disabled');
+        }
+
+    });
+
+    $('#id_password2').on('paste keyup', function() {
+
+        var pass1 = $('#id_password1').val();
+        var pass2 = $(this).val();
+
+        if (pass1 != pass2) {
+            $('#pass2-message').text("Las contraseñas no coinciden.");
+            $('#submit-btn').attr('disabled', 'disabled');
+        }
+        else {
+            $('#pass2-message').text("");
+            $('#submit-btn').removeAttr('disabled', 'disabled');
+        }
+
+    })
+
+</script>
+
+{% endblock contenido %}
