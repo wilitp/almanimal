@@ -2,8 +2,8 @@
 *venv/
 
 #VSCode
-.vscode/
-.vscode
+*.vscode/
+*.vscode
 
 # Created by https://www.gitignore.io/api/django
 # Edit at https://www.gitignore.io/?templates=django
