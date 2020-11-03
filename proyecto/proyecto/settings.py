@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'adopcion',
     'blog',
     'usuario',
+    'contenido'
 ]
 
 SITE_ID=1
