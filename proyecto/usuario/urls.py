@@ -1,11 +1,9 @@
 from django.urls import path, include
-from . import views as v
+from . import views
 
 urlpatterns = [
-    path('', v.home, name='home'),
-    path('acerca-de/', v.about, name='about'),
-    path('en-adopción/', v.adopt, name='adopt'),
-    path('blog/', v.blog, name='blog'),
-    path('donaciones/', v.donate, name='donate'),
+    path('iniciar-sesion/', views.logIn, name='iniciar-sesion'),
+    path('cerrar-sesion/', views.logOut, name='cerrar-sesion'),
+    path('registro/', views.registro, name='registro'),
 
 ]
