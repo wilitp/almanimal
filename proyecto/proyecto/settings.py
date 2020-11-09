@@ -164,3 +164,7 @@ CKEDITOR_CONFIGS = {
         ]
     }
 }
+
+# EMAIL BACKEND FOR DEVELOPMENT PURPOSES
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
