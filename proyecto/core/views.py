@@ -6,9 +6,6 @@ from django.shortcuts import HttpResponse
 def home(request):
     return render(request, 'core/index.html')
 
-def about(request):
-    return render(request, 'core/about.html')
-
 def contacto(request):
 
     if request.method == 'POST':
