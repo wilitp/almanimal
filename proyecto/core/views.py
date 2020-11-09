@@ -8,6 +8,8 @@ def home(request):
 
 def contacto(request):
 
+    # testeo de formulario
+    
     if request.method == 'POST':
 
         nombre = request.POST.get('first_name')
