@@ -5,48 +5,14 @@ from django.template.loader import render_to_string
 from datetime import datetime
 from django.contrib import messages
 from smtplib import SMTPException
-
+from .models import ContactForm
 # Create your views here.
 
 def home(request):
     return render(request, 'core/index.html')
 
 def contacto(request):
-
-    if request.method == 'POST':
-
-        nombre = request.POST.get('first_name')
-        apellido = request.POST.get('last_name')
-        email = request.POST.get('email')
-        telefono = request.POST.get('tel')
-        asunto = request.POST.get('subject')
-        consulta = request.POST.get('body')
-
-        if nombre == "" or apellido == "" or email == "" or asunto == "" or consulta == "":
-            return HttpResponse("Completá los campos obligatorios")
-
-        fecha = str(datetime.now())
-
-        context = ({'nombre': nombre, 'apellido': apellido, 'email': email, 'telefono': telefono, 'consulta': consulta, 'fecha': fecha})
-
-        subject, from_email, to = str(asunto), str(email), 'almanimalmendiolaza@gmail.com'
-        text_content = str(asunto)
-        html_content = render_to_string('core/email/email.html', context, request=request)
-
-        try:
-            msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-            msg.attach_alternative(html_content, 'text/html')
-            msg.send(fail_silently=False)
-            messages.success(request, '¡Tu consulta se envió con éxito!')
-        
-        except SMTPException as e:
-            print('There was an error sending an email: ', e)
-            messages.error(request, 'Hubo un error enviando tu consulta. Volvé a probar más tarde.')
-            return render(request, 'core/contact.html')
-            
-        return render(request, 'core/contact.html')
-
-    return render(request, 'core/contact.html')
+    return render(request, 'core/contact.html', {'form': ContactForm})
 
 def donaciones(request):
     return render(request, 'core/donaciones.html')

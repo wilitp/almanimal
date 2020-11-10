@@ -28,7 +28,8 @@
 <form method="POST" action="{% url 'contacto' %}">
     {% csrf_token %}
     <div class="form-group row">
-      <label class="col-2"></label> 
+
+<!--       <label class="col-2"></label> 
       <div class="col-8">
         <input id="first_name" name="first_name" placeholder="Nombre *" type="text" required="required" class="form-control">
       </div>
@@ -68,7 +69,8 @@
       <div class="offset-2 col-8">
         <button name="submit" type="submit" class="btn btn-primary">Enviar</button>
       </div>
-    </div>
+    </div> -->
+    {{form}}
   </form>
 
   <script type="text/javascript">
