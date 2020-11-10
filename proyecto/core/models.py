@@ -4,7 +4,7 @@ from django.forms import ModelForm
 
 
 class Contact(models.Model):
-    name = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     email = models.EmailField()
     tel = models.CharField(max_length=15)
@@ -23,13 +23,9 @@ class Contact(models.Model):
     )
     subject = models.CharField(max_length=80)
     body = models.CharField(max_length=2000)
-    answered = models.BooleanField()
+    answered = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True)
 
 
     def __str__(self):
-        return self.name
-
-class ContactForm(ModelForm):
-    class Meta:
-        model = Contact
-        fields = ['name', 'last_name', 'tel', 'contact_category', 'subject', 'body']
+        return self.first_name
