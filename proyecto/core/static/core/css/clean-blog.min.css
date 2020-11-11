@@ -175,6 +175,10 @@ img::-moz-selection {
         color: #212529
     }
 
+    #mainNav.is-fixed .navbar-nav>li.nav-item>a.nav-link.active {
+        color: white;
+    }
+
     #mainNav.is-fixed .navbar-nav>li.nav-item>a:focus,
     #mainNav.is-fixed .navbar-nav>li.nav-item>a:hover {
         color: #0085a1
@@ -460,4 +464,14 @@ footer .copyright {
 #blog_list_img {
     object-fit: cover; 
     height: 480px;
+}
+
+a.nav-link.active {
+
+    background-color: rgba(15, 15, 15, 0.603) !important;
+
+}
+
+#mainNav .container .navbar-collapse .navbar-nav .nav-item a.nav-link.active {
+    color: white;
 }
