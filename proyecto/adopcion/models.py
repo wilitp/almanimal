@@ -43,7 +43,7 @@ class Animal(models.Model):
     descripcion = models.TextField(verbose_name='Descripcion', null=False, blank=False)
     caracter = models.TextField(verbose_name='Caracter', null=True, blank=True)
     vacunado = models.BooleanField(verbose_name='Vacunado', null=False, blank=False)
-    desparasitado = models.BooleanField(verbose_name='Desparacitado', null=False, blank=False)
+    desparasitado = models.BooleanField(verbose_name='Desparasitado', null=False, blank=False)
     castrado = models.BooleanField(verbose_name='Castrado', null=False, blank=False)
     comentario = models.TextField(verbose_name='Comentarios', null=True, blank=True)
     publicado = models.BooleanField(verbose_name='Publicado', default=True)
@@ -51,4 +51,14 @@ class Animal(models.Model):
     actualizado = models.DateTimeField(auto_now=True,verbose_name='Ultima actualizacion')
 
 
+    def save(self, *args, **kwargs):
+        try:
+            this = Animal.objects.get(id=self.id)
+            if this.foto1 != self.foto1:
+                this.foto1.delete()
+            if this.foto2 != self.foto2:
+                this.foto2.delete()
+        except:
+            pass
+        super(Animal, self).save(*args, **kwargs)
 

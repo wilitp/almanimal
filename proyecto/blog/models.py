@@ -15,5 +15,14 @@ class Blog(models.Model):
 
     def __str__(self):
         return str(self.title) + " - " + str(self.author)
+
+    def save(self, *args, **kwargs):
+        try:
+            this = Blog.objects.get(id=self.id)
+            if this.photo != self.photo:
+                this.photo.delete()
+        except:
+            pass
+        super(Blog, self).save(*args, **kwargs)
     
 

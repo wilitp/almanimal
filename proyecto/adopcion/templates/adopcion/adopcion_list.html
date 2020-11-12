@@ -17,11 +17,19 @@
         <br/>
         <p>No hay animales en adopcion publicados actualmente</p>
         <br/>
+        {% if not request.user.is_authenticated %}
+        <p><a href="{% url 'iniciar-sesion' %}">Iniciá sesión</a> para poder publicar animales.</p>
+        {% else %}
         <a href="{% url 'agregar-animal' %}" class="btn btn-primary">Publicá un animal</a>
+        {% endif %}
     </center>
     {% else %}
     <center>
+      {% if not request.user.is_authenticated %}
+      <p><a href="{% url 'iniciar-sesion' %}">Iniciá sesión</a> para poder publicar animales.</p>
+      {% else %}
       <a href="{% url 'agregar-animal' %}" class="btn btn-primary">Publicá un animal</a>
+      {% endif %}
     </center>
     <hr>
     {% endif %}
