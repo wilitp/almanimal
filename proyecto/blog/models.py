@@ -5,7 +5,7 @@ from ckeditor.fields import RichTextField
 
 class Blog(models.Model):
 
-    author = models.ForeignKey(User, verbose_name="Autor", on_delete=models.CASCADE)
+    author = models.ForeignKey(User, verbose_name="Autor", on_delete=models.CASCADE, limit_choices_to={'is_staff':True})
     title = models.CharField("Título", max_length=50, default="")
     photo = models.ImageField("Foto de encabezado", upload_to="blog_photo", blank=False, null=False, default="")
     blog_body = RichTextField(verbose_name="Texto")
