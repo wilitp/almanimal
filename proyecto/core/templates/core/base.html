@@ -39,13 +39,13 @@
 				<a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Inicio</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link {% if request.resolver_match.url_name == 'adopcion' %}active{% endif %}" href="{% url 'adopcion' %}">Adoptar</a>
+				<a class="nav-link {% if request.resolver_match.url_name == 'adopcion' or request.resolver_match.url_name == 'adopcion-detail' or request.resolver_match.url_name == 'agregar-animal' or request.resolver_match.url_name == 'editar-animal' %}active{% endif %}" href="{% url 'adopcion' %}">Adoptar</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link {% if request.resolver_match.url_name == 'donaciones' %}active{% endif %}" href="{% url 'donaciones' %}">Donaciones</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link {% if request.resolver_match.url_name == 'blog' %}active{% endif %}" href="{% url 'blog' %}">Blogs</a>
+				<a class="nav-link {% if request.resolver_match.url_name == 'blog' or request.resolver_match.url_name == 'blog_detail' %}active{% endif %}" href="{% url 'blog' %}">Blog</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link {% if request.resolver_match.url_name == 'contacto' %}active{% endif %}" href="{% url 'contacto' %}">Contacto</a>
@@ -56,7 +56,7 @@
 			</li>
 			{% else %}
 			<li class="nav-item">
-				<a class="nav-link  {% if request.resolver_match.url_name == 'iniciar-sesion' %}active{% endif %}" href="{% url 'iniciar-sesion' %}">Iniciar Sesión</a>
+				<a class="nav-link  {% if request.resolver_match.url_name == 'iniciar-sesion' or request.resolver_match.url_name == 'registro' %}active{% endif %}" href="{% url 'iniciar-sesion' %}">Iniciar Sesión</a>
 			</li>
 			{% endif %}
 			</ul>

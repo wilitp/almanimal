@@ -475,3 +475,22 @@ a.nav-link.active {
 #mainNav .container .navbar-collapse .navbar-nav .nav-item a.nav-link.active {
     color: white;
 }
+
+a.btn.btn-outline-primary {
+
+    border-color: #0085a1 !important;
+    color: #0085a1 !important;
+    transition: color .2s, background-color .2s;
+
+}
+
+a.btn.btn-outline-primary:hover {
+
+    color: #fff !important;
+    background-color: #0085a1 !important;
+
+}
+
+a, button {
+    cursor: pointer;
+}

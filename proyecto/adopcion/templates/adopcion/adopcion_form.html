@@ -1,0 +1,41 @@
+{% extends "core/base.html" %}
+
+
+{% block title %} En adopcion {% endblock title %}
+
+{% block image %} {% load static %} {% static 'core/img/adopcion-bg.jpg'%} {% endblock image %}
+
+{% block cabecera %}
+<h1> Adoptá</h1>
+<p> Encontrá tu compañía ideal</p>
+{% endblock cabecera %}
+
+{% block contenido %}
+
+    <a href="{% url 'adopcion' %}">&larr; Volver</a>
+    <br><br>
+
+    {% if request.user.is_authenticated %}
+
+    <div class="col-8">
+
+        <form action="{% url 'agregar-animal' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{form.as_p}}
+
+            <button name="submit" type="submit" class="btn btn-primary">Publicar</button>
+
+        </form>
+
+    </div>
+
+    {% else %}
+
+    <center>
+        <p><a href="{% url 'iniciar-sesion' %}">Iniciá sesión</a> para poder publicar animales.</p>
+    </center>
+
+    {% endif %}
+
+{% endblock contenido %}

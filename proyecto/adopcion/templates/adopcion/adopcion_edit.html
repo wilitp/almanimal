@@ -1,0 +1,68 @@
+{% extends "core/base.html" %}
+
+
+{% block title %} En adopcion {% endblock title %}
+
+{% block image %} {% load static %} {% static 'core/img/adopcion-bg.jpg'%} {% endblock image %}
+
+{% block cabecera %}
+<h1> Adoptá</h1>
+<p> Encontrá tu compañía ideal</p>
+{% endblock cabecera %}
+
+{% block contenido %}
+
+    <a href="{% url 'adopcion' %}">&larr; Volver</a>
+    <br><br>
+
+    {% if request.user.id == animal.dueño.id %}
+
+    <div class="col-8">
+
+        <form action="{% url 'editar-animal' animal.pk %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{form.as_p}}
+
+            <button name="submit" type="submit" class="btn btn-primary">Actualizar</button>
+
+        </form>
+
+        <br/>
+
+        <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmationModal">Eliminar</button>
+
+        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Eliminar animal</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  ¿Estás seguro que querés eliminar "{{ animal }}"?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <form method="POST" action="{% url 'eliminar-animal' animal.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </div>
+
+    {% else %}
+
+    <center>
+        <p>Tenés que ser el dueño de esta publicación para poder editarla.</p>
+    </center>
+
+    {% endif %}
+
+{% endblock contenido %}

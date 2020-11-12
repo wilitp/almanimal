@@ -28,4 +28,4 @@ class Contact(models.Model):
 
 
     def __str__(self):
-        return self.first_name
+        return f'{self.subject} - {self.first_name}'

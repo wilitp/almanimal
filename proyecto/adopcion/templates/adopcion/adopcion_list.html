@@ -16,7 +16,14 @@
     <center>
         <br/>
         <p>No hay animales en adopcion publicados actualmente</p>
+        <br/>
+        <a href="{% url 'agregar-animal' %}" class="btn btn-primary">Publicá un animal</a>
     </center>
+    {% else %}
+    <center>
+      <a href="{% url 'agregar-animal' %}" class="btn btn-primary">Publicá un animal</a>
+    </center>
+    <hr>
     {% endif %}
   
   <div class="row">
@@ -35,6 +42,9 @@
         <p class="card-subtitle"> {{ animal.tipo_animal }}, {{ animal.raza }}</p>
         <p class="card-text"> {{ animal.descripcion|truncatechars:100 }}</p>
         <a href="{% url 'adopcion-detail' animal.pk %}" class="btn btn-primary">Detalle</a>
+        {% if animal.dueño.id == request.user.id %}
+        <a href="{% url 'editar-animal' animal.pk %}" class="btn btn-outline-primary">Editar</a>
+        {% endif %}
       </div>
     </div>
   {% endfor %}

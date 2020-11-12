@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -30,6 +31,7 @@ class Animal(models.Model):
     def __str__(self):
         return self.nombre
 
+    dueño = models.ForeignKey(User, on_delete=models.CASCADE)
     nombre = models.CharField(verbose_name='Nombre', max_length=255, null=False, blank=False)
     tipo_animal = models.CharField(verbose_name='Tipo de animal', max_length=40, choices=TipoAnimal.choices, null=False, blank=False)
     raza = models.CharField(verbose_name='Raza', max_length=255, null=False, blank=False)
@@ -44,7 +46,7 @@ class Animal(models.Model):
     desparasitado = models.BooleanField(verbose_name='Desparacitado', null=False, blank=False)
     castrado = models.BooleanField(verbose_name='Castrado', null=False, blank=False)
     comentario = models.TextField(verbose_name='Comentarios', null=True, blank=True)
-    publicado = models.BooleanField(verbose_name='Publicado', default=False)
+    publicado = models.BooleanField(verbose_name='Publicado', default=True)
     creado = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creacion')
     actualizado = models.DateTimeField(auto_now=True,verbose_name='Ultima actualizacion')
 
