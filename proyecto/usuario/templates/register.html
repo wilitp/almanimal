@@ -47,7 +47,13 @@
 <form class="form-signin" action="{% url 'registro' %}" method="POST">
     {% csrf_token %}
     {{ form.username }}
+    {% if messages %}
+    {% for message in messages %}
+    <p id="user-message">{{ message }}</p>
+    {% endfor %}
+    {%else%}
     <p></p>
+    {% endif %}
     {{ form.password1 }}
     <p id="pass1-message"></p>
     {{ form.password2 }}
@@ -74,6 +80,22 @@
         }
 
     });
+
+    $('#id_password1').on('paste keyup', function() {
+
+      var pass1 = $(this).val();
+      var pass2 = $('#id_password2').val();
+
+      if (pass1 != pass2) {
+          $('#pass2-message').text("Las contraseñas no coinciden.");
+          $('#submit-btn').attr('disabled', 'disabled');
+      }
+      else {
+          $('#pass2-message').text("");
+          $('#submit-btn').removeAttr('disabled', 'disabled');
+      }
+
+    })
 
     $('#id_password2').on('paste keyup', function() {
 
