@@ -62,7 +62,10 @@
     <h1 class="h3 mb-3 font-weight-normal">Ingresá tus datos</h1>
     <input type="text" class="form-control" name="usuario" placeholder="Usuario" required autofocus>
     <input type="password" class="form-control" name="contraseña" placeholder="Contraseña" required>
-    <small style="color: red;">{{message}}</small>
+    {% if message %}
+        <small>{{message}}</small>
+        <br/>
+    {% endif %}
     <br/>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Acceder</button>
     <br/>

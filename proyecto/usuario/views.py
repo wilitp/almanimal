@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, HttpResponse
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegistroForm
 from django.contrib import messages
@@ -42,9 +41,6 @@ def registro(request):
         if form.is_valid():
             user = form.save()
             return redirect('iniciar-sesion')
-        
-        elif User.objects.filter(username=request.POST.get('username')).exists():
-            messages.error(request, 'Este nombre de usuario no está disponible.')
 
     return render(request, 'register.html', {'form' : form})
 

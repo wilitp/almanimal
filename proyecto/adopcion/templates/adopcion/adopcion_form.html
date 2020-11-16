@@ -30,6 +30,18 @@
 
     </div>
 
+    <script type="text/javascript">
+        var specialKeys = new Array();
+        specialKeys.push(8); //Backspace
+        function IsNumeric(e) {
+            var keyCode = e.which ? e.which : e.keyCode
+            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+            return ret;
+        }
+        var edad = document.getElementById("id_edad");
+        edad.onkeypress = IsNumeric;
+    </script>
+
     {% else %}
 
     <center>

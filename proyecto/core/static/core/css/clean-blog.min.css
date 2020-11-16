@@ -494,3 +494,17 @@ a.btn.btn-outline-primary:hover {
 a, button {
     cursor: pointer;
 }
+
+.page-link {
+    color: #0085a1 !important;
+}
+
+.page-item.active .page-link {
+    color: white !important;
+    background-color: #0085a1 !important;
+    border-color: #0085a1 !important;
+}
+
+.page-item.disabled .page-link {
+    color: gray !important;
+}

@@ -6,6 +6,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic import CreateView, UpdateView, DeleteView
 
 from .models import Animal
+from core.models import PaginaAdopcion
 
 from .forms import AnimalForm
 
@@ -19,7 +20,12 @@ class AdopcionListView(ListView):
     
     model = Animal
     template_name = 'adopcion/adopcion_list.html'
-    queryset = Animal.objects.all().order_by('-id').filter(publicado=True)
+
+    def get_context_data(self, **kwargs):
+        queries = super(AdopcionListView, self).get_context_data(**kwargs)
+        queries['animal'] = Animal.objects.all().order_by('-id').filter(publicado=True)
+        queries['seo_description'] = PaginaAdopcion.objects.get(id=1).seo_description
+        return queries
 
 
 class AdopcionDetailView(DetailView):

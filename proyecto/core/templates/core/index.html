@@ -10,7 +10,10 @@
 <p> Una ONG de Mendiolaza</p>
 {% endblock cabecera %}
 
-{% block contenido %}CONTENIDO
+{% block contenido %}
+
+{{texto|safe}}
+
 {% endblock contenido %}
 
 

@@ -5,14 +5,18 @@ from django.template.loader import render_to_string
 from datetime import datetime
 from django.contrib import messages
 from smtplib import SMTPException
-from .models import Contact
+from .models import Contact, PaginaInicio, PaginaContacto, PaginaDonaciones
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'core/index.html')
+    seo_description = PaginaInicio.objects.get(id=1).seo_description
+    texto = PaginaInicio.objects.get(id=1).description
+    return render(request, 'core/index.html', {'seo_description' : seo_description, 'texto' : texto})
 
 def contacto(request):
+
+    seo_description = PaginaContacto.objects.get(id=1).seo_description
 
     if request.method == 'POST':
 
@@ -47,11 +51,13 @@ def contacto(request):
         except SMTPException as e:
             print('There was an error sending an email: ', e)
             messages.error(request, 'Hubo un error enviando tu consulta. Volvé a probar más tarde.')
-            return render(request, 'core/contact.html')
+            return render(request, 'core/contact.html', {'seo_description' : seo_description})
             
-        return render(request, 'core/contact.html')
+        return render(request, 'core/contact.html', {'seo_description' : seo_description})
 
-    return render(request, 'core/contact.html')
+    return render(request, 'core/contact.html', {'seo_description' : seo_description})
 
 def donaciones(request):
-    return render(request, 'core/donaciones.html')
+    seo_description = PaginaDonaciones.objects.get(id=1).seo_description
+    texto = PaginaDonaciones.objects.get(id=1).description
+    return render(request, 'core/donaciones.html', {'seo_description' : seo_description, 'texto' : texto})

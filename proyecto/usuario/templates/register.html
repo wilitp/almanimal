@@ -47,19 +47,19 @@
 <form class="form-signin" action="{% url 'registro' %}" method="POST">
     {% csrf_token %}
     {{ form.username }}
-    {% if messages %}
-    {% for message in messages %}
-    <p id="user-message">{{ message }}</p>
-    {% endfor %}
-    {%else%}
     <p></p>
-    {% endif %}
     {{ form.password1 }}
     <p id="pass1-message"></p>
     {{ form.password2 }}
     <p id="pass2-message"></p>
     <br/>
-    <button class="btn btn-lg btn-primary btn-block" id="submit-btn" type="submit" disabled>Registrarse</button>
+    {% if form.errors %}
+      {% for field in form %}
+        {{ field.errors }}
+      {% endfor %}
+      <br/>
+    {% endif %}
+    <button class="btn btn-lg btn-primary btn-block" id="submit-btn" type="submit">Registrarse</button>
     <br/>
     <a href="{% url 'iniciar-sesion' %}">Si ya tenés cuenta, logueate</a>
 </form>
