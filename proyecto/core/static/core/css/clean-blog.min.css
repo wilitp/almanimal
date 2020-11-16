@@ -466,6 +466,11 @@ footer .copyright {
     height: 480px;
 }
 
+#adop_list_img {
+    object-fit: cover; 
+    height: 220px;
+}
+
 a.nav-link.active {
 
     background-color: rgba(15, 15, 15, 0.603) !important;

@@ -41,9 +41,9 @@
     <div class="card m-3" style="width: 20rem;">
 
     {% if animal.foto1 %}
-      <img class="card-img-top" src="{{animal.foto1.url}}" height="200" alt="Card image cap">
+      <img class="card-img-top" src="{{animal.foto1.url}}" id="adop_list_img" height="200" alt="Card image cap">
     {% else %}
-      <img class="card-img-top" src="{% static 'adopcion/img/no-image.png' %}" height="200" alt="Card image cap">
+      <img class="card-img-top" src="{% static 'adopcion/img/no-image.png' %}" id="adop_list_img" height="200" alt="Card image cap">
     {% endif %}
       <div class="card-body">
         <h5 class="card-title">{{ animal.nombre }}</h5>

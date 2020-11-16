@@ -12,6 +12,7 @@
 
   // Show the navbar when the page is scrolled up
   var MQL = 992;
+  $('#dark-logo').hide();
 
   //primary navigation slide-in effect
   if ($(window).width() > MQL) {
@@ -26,8 +27,12 @@
           //if scrolling up...
           if (currentTop > 0 && $('#mainNav').hasClass('is-fixed')) {
             $('#mainNav').addClass('is-visible');
+            $('#dark-logo').show();
+            $('#light-logo').hide();
           } else {
             $('#mainNav').removeClass('is-visible is-fixed');
+            $('#light-logo').show();
+            $('#dark-logo').hide();
           }
         } else if (currentTop > this.previousTop) {
           //if scrolling down...
