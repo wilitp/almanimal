@@ -60,7 +60,10 @@ INSTALLED_APPS = [
     'adopcion',
     'blog',
     'usuario',
-    'contenido'
+    'contenido',
+
+    # Sitemap
+    'django.contrib.sitemaps',
 ]
 
 SITE_ID=1
