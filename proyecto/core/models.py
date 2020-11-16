@@ -52,5 +52,31 @@ class PaginaDonaciones(models.Model):
         return 'Informacion de la pagina de donaciones'
 
 
+class PaginaContacto(models.Model):
 
-        
+    seo_description = RichTextField(verbose_name="Texto")
+    created_date = models.DateTimeField("Fecha de creación", auto_now_add=True)
+    last_updated = models.DateTimeField("Última actualización", auto_now=True)
+
+    def __str__(self):
+        return 'Informacion de la pagina Contacto'
+
+
+class PaginaBlog(models.Model):
+
+    seo_description = RichTextField(verbose_name="Texto")
+    created_date = models.DateTimeField("Fecha de creación", auto_now_add=True)
+    last_updated = models.DateTimeField("Última actualización", auto_now=True)
+
+    def __str__(self):
+        return 'Informacion de la pagina Blog'
+
+
+class PaginaAdopcion(models.Model):
+
+    seo_description = RichTextField(verbose_name="Texto")
+    created_date = models.DateTimeField("Fecha de creación", auto_now_add=True)
+    last_updated = models.DateTimeField("Última actualización", auto_now=True)
+
+    def __str__(self):
+        return 'Informacion de la pagina Adopcion'
