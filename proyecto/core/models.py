@@ -1,5 +1,4 @@
 from django.db import models
-from django.db import signals
 from django.forms import ModelForm
 
 from ckeditor.fields import RichTextField

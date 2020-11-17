@@ -513,3 +513,9 @@ a, button {
 .page-item.disabled .page-link {
     color: gray !important;
 }
+
+.nav-link {
+    font-family: 'Caveat', cursive !important;
+    font-weight: 900 !important;
+    font-size: 16px !important;
+}

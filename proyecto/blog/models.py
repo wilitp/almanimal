@@ -14,7 +14,7 @@ class Blog(models.Model):
     last_updated = models.DateTimeField("Última actualización", auto_now=True)
 
     def __str__(self):
-        return str(self.title) + " - " + str(self.author)
+        return f"{self.id}/{self.title}"
 
     def save(self, *args, **kwargs):
         try:

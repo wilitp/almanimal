@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from proyecto import settings
 from django.conf.urls.static import static
-from core.sitemaps import StaticSitemap
+from core.sitemaps import StaticSitemap, DynamicSitemap
 from django.contrib.sitemaps.views import sitemap
 
-sitemaps = {'static' : StaticSitemap}
+sitemaps = {'static' : StaticSitemap, 'dynamic' : DynamicSitemap}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
