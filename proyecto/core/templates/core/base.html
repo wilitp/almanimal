@@ -124,6 +124,12 @@
 			</div>
 		</div>
 		</div>
+		{% if request.user.is_staff %}
+		<br/>
+		<center>
+			<a href="/admin">Ir a Administración de página &rarr;</a>
+		</center>
+		{% endif %}
 	</footer>
 
 	<!-- Bootstrap y Javascripts -->

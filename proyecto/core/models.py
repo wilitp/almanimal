@@ -4,8 +4,8 @@ from django.forms import ModelForm
 from ckeditor.fields import RichTextField
 
 class Contact(models.Model):
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
+    first_name = models.CharField("Nombre", max_length=20)
+    last_name = models.CharField("Apellido", max_length=20)
     email = models.EmailField()
     tel = models.CharField(max_length=15)
     CONTACT_CATEGORY_CHOICES = [
@@ -17,18 +17,23 @@ class Contact(models.Model):
     ('OTRO', 'Otro'),
     ]
     contact_category = models.CharField(
+        "Categoría",
         max_length=10,
         choices=CONTACT_CATEGORY_CHOICES,
         default='CONSULTA'
     )
-    subject = models.CharField(max_length=80)
-    body = models.CharField(max_length=2000)
-    answered = models.BooleanField(default=False)
-    date = models.DateTimeField(auto_now_add=True)
+    subject = models.CharField("Asunto", max_length=80)
+    body = models.CharField("Cuerpo", max_length=2000)
+    answered = models.BooleanField("Contestado", default=False)
+    date = models.DateTimeField("Fecha", auto_now_add=True)
 
 
     def __str__(self):
         return f'{self.subject} - {self.first_name}'
+
+    class Meta:
+        verbose_name = "Contacto"
+        verbose_name_plural = "Contactos"
 
 
 class PaginaInicio(models.Model):
@@ -41,6 +46,9 @@ class PaginaInicio(models.Model):
     def __str__(self):
         return 'Informacion de la pagina inicio'
 
+    class Meta:
+        verbose_name_plural = "Página inicio"
+
 
 class PaginaDonaciones(models.Model):
 
@@ -51,6 +59,9 @@ class PaginaDonaciones(models.Model):
 
     def __str__(self):
         return 'Informacion de la pagina de donaciones'
+
+    class Meta:
+        verbose_name_plural = "Página donaciones"
 
 
 class PaginaContacto(models.Model):

@@ -9,6 +9,7 @@ from .models import Animal
 class AnimalAdmin(admin.ModelAdmin):
 
     readonly_fields  = ['actualizado', 'creado']
-    list_display = ['nombre', 'tipo_animal', 'raza']
+    list_display = ['nombre', 'tipo_animal', 'raza', 'creado']
+    list_filter = ('tipo_animal', 'raza', 'creado')
 
 admin.site.register(Animal, AnimalAdmin)
