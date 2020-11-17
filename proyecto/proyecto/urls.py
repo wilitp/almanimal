@@ -23,6 +23,7 @@ from django.contrib.sitemaps.views import sitemap
 sitemaps = {'static' : StaticSitemap, 'dynamic' : DynamicSitemap}
 
 urlpatterns = [
+    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path('admin/', admin.site.urls),
 
 
@@ -44,4 +45,3 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps' : sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

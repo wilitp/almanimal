@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #Jet
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +56,7 @@ INSTALLED_APPS = [
 
     # Django Cleanup
     'django_cleanup.apps.CleanupConfig',
-    
+
     # Custom Apps
     'core',
     'adopcion',
