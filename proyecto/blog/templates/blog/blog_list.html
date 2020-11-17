@@ -13,6 +13,13 @@
 {% endblock cabecera %}
 
 {% block contenido %}
+
+    {% if request.user.is_staff %}
+    <center>
+        <a href="/admin/blog/blog/add/" class="btn btn-primary">Publicá un blog</a>
+        <hr>
+    </center>
+    {% endif %}
     
     {% if blog_list.count == 0 %}
     <center>

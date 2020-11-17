@@ -91,6 +91,24 @@ class AnimalForm(ModelForm):
         }
     ))
 
+    telefono = forms.CharField(label="Teléfono de contacto", max_length=255, required=True, widget=forms.TextInput(
+        attrs={
+            'class' : 'form-control',
+            'placeholder' : 'Teléfono',
+            'style' : 'margin-bottom:20px; margin-top:20px;',
+            'type' : 'tel'
+        }
+    ))
+
+    email = forms.CharField(label="Email de contacto", max_length=255, required=True, widget=forms.TextInput(
+        attrs={
+            'class' : 'form-control',
+            'placeholder' : 'Email',
+            'style' : 'margin-bottom:20px; margin-top:20px;',
+            'type' : 'email'
+        }
+    ))
+
     class Meta:
         model = Animal
         fields = (
@@ -107,5 +125,7 @@ class AnimalForm(ModelForm):
             'vacunado',
             'desparasitado',
             'castrado',
-            'comentario'
+            'comentario',
+            'telefono',
+            'email'
         )

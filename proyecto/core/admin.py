@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import PaginaInicio, PaginaDonaciones,PaginaContacto, PaginaAdopcion, PaginaBlog
+from .models import PaginaInicio, PaginaDonaciones,PaginaContacto, PaginaAdopcion, PaginaBlog, Contact
 
-admin.site.register(Contacto)
+admin.site.register(Contact)
 admin.site.register(PaginaInicio)
 admin.site.register(PaginaDonaciones)
 admin.site.register(PaginaContacto)

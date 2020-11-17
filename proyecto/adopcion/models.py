@@ -46,6 +46,8 @@ class Animal(models.Model):
     desparasitado = models.BooleanField(verbose_name='Desparasitado', null=False, blank=False)
     castrado = models.BooleanField(verbose_name='Castrado', null=False, blank=False)
     comentario = models.TextField(verbose_name='Comentarios', null=True, blank=True)
+    telefono = models.CharField("Teléfono de contacto", max_length=50)
+    email = models.EmailField("Email de contacto", max_length=254)
     publicado = models.BooleanField(verbose_name='Publicado', default=True)
     creado = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creacion')
     actualizado = models.DateTimeField(auto_now=True,verbose_name='Ultima actualizacion')
