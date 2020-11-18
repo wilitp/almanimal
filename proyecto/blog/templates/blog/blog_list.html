@@ -16,7 +16,7 @@
 
     {% if request.user.is_staff %}
     <center>
-        <a href="/admin/blog/blog/add/" class="btn btn-primary">Publicá un blog</a>
+        <a href="{% url 'admin:blog_blog_add' %}" class="btn btn-primary">Publicá un blog</a>
         <hr>
     </center>
     {% endif %}
@@ -38,7 +38,7 @@
             <p class="card-text" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{ blog.blog_body|safe|truncatechars:400 }}</p>
             <a href="{% url 'blog_detail' pk=blog.pk title=blog.title %}" class="btn btn-primary">Leer más</a>
             {% if request.user.is_staff and blog.author.id == request.user.id %}
-            <a href="/admin/blog/blog/{{ blog.id }}/change/" class="btn btn-outline-primary">Editar</a>
+            <a href="{% url 'admin:blog_blog_change' blog.id %}" class="btn btn-outline-primary">Editar</a>
             {% endif %}
             <p class="card-text"><small class="text-muted">Actualizado {{ blog.last_updated | naturaltime }} por {{ blog.author.first_name | title }} {{ blog.author.last_name | title }}</small></p>
             </div>
