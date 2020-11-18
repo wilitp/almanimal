@@ -8,6 +8,11 @@
 {% block cabecera %}
 <h1> Almanimal</h1>
 <p> Una ONG de Mendiolaza</p>
+<div class="mt-5 w-50 mx-auto">
+  <a href="{% url 'adopcion' %}" class="btn-primary p-2 btn-block no-underline">Adoptar</a>
+  <a href="https://www.animanaturalis.org/p/1388/como_denunciar_maltrato_animal_en_argentina" target='_blank'
+    class="btn-danger p-2 btn-block no-underline">Denunciar Violencia Animal</a>
+</div>
 {% endblock cabecera %}
 
 {% block contenido %}
@@ -15,5 +20,3 @@
 {{texto|safe}}
 
 {% endblock contenido %}
-
-

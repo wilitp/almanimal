@@ -1,3 +1,11 @@
+.no-underline {
+  text-decoration: none;
+}
+
+.no-underline:hover {
+  text-decoration: none;
+}
+
 body {
     font-size: 20px;
     color: #212529;
