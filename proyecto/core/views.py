@@ -6,13 +6,16 @@ from datetime import datetime
 from django.contrib import messages
 from smtplib import SMTPException
 from .models import Contact, PaginaInicio, PaginaContacto, PaginaDonaciones
+from efemerides.models import Efemerides
 
 # Create your views here.
 
 def home(request):
     seo_description = PaginaInicio.objects.get(id=1).seo_description
     texto = PaginaInicio.objects.get(id=1).description
-    return render(request, 'core/index.html', {'seo_description' : seo_description, 'texto' : texto})
+    today = datetime.now().date
+    efemerides = Efemerides.objects.all()
+    return render(request, 'core/index.html', {'seo_description' : seo_description, 'texto' : texto, 'today' : today, 'efemerides' : efemerides})
 
 def contacto(request):
 

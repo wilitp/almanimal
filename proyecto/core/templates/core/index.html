@@ -3,7 +3,7 @@
 
 {% block title %} Inicio {% endblock title %}
 
-{% block image %} {% load static %} {% static 'core/img/inicio-bg.jpeg'%} {% endblock image %}
+{% block image %} {% load static %} {% for ef in efemerides|slice:':1' %} {% if today|date:'d/m' == ef.fecha_festividad|date:'d/m' %} {{ ef.foto.url }} {% else %} {% static 'core/img/inicio-bg.jpeg'%} {% endif %} {% endfor %} {% endblock image %}
 
 {% block cabecera %}
 <h1> Almanimal</h1>
@@ -16,6 +16,17 @@
 {% endblock cabecera %}
 
 {% block contenido %}
+
+{% for ef in efemerides %}
+  {% if today|date:'d/m' == ef.fecha_festividad|date:'d/m' %}
+    <div class="jumbotron bg-{{ef.color}} text-{% if ef.color == 'warning' %}dark{% else %}white{% endif %}">
+      <div class="container">
+        <h1 class="display-4">{{ ef.titulo }}</h1>
+        <p class="lead">{{ ef.texto | safe }}</p>
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
 
 {{texto|safe}}
 

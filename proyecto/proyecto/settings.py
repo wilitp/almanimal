@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'blog',
     'usuario',
     'contenido',
+    'efemerides',
 
     # Sitemap
     'django.contrib.sitemaps',
