@@ -4,12 +4,14 @@ from ckeditor.fields import RichTextField
 class Efemerides(models.Model):
 
     colors = [
-        ("primary", "Azul"),
-        ("success", "Verde"),
-        ("danger", "Rojo"),
         ("warning", "Amarillo"),
+        ("primary", "Azul"),
         ("info", "Cian"),
-        ("dark", "Negro")
+        ("fuchsia", "Fucsia"),
+        ("orange", "Naranja"),
+        ("dark", "Negro"),
+        ("danger", "Rojo"),
+        ("success", "Verde")
     ]
 
     titulo =  models.CharField("Título", max_length=50)

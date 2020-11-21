@@ -527,3 +527,11 @@ a, button {
     font-weight: 900 !important;
     font-size: 16px !important;
 }
+
+.bg-fuchsia {
+    background-color: #c9549d;
+}
+
+.bg-orange {
+    background-color: #fd8c04;
+}
