@@ -33,7 +33,6 @@ class AdopcionDetailView(DetailView):
 
     model = Animal
     template_name = 'adopcion/adopcion_detail.html'
-    
 
 class AdopcionFormView(CreateView):
 
