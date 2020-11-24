@@ -42,25 +42,25 @@
     <h1>{{object.nombre}}</h1>
 
     <h3>Detalles</h3>
-    <p>raza: {{object.raza}}</p>
-    <p>sexo: {{object.sexo}}</p>
-    <p>caracter: {{object.caracter}}</p>
+    <p>Raza: {{object.raza}}</p>
+    <p>Sexo: {{object.sexo}}</p>
+    <p>Caracter: {{object.caracter}}</p>
 
     <h3>Descripción</h3>
     <p>{{object.descripcion}}</p>
 
     <h3>Veterinaria</h3>
-    <p>vacunado: {{object.vacunado}}</p>
-    <p>desparasitado: {{object.desparasitado}}</p>
-    <p>castrado: {{object.castrado}}</p>
-    <p>comentario: {{object.comentario}}</p>
+    <p>Vacunado: {% if object.vacunado %} Si {% else %} No {% endif %} </p>
+    <p>Desparasitado: {% if object.desparasitado %} Si {% else %} No {% endif %} </p>
+    <p>Castrado: {% if object.castrado %} Si {% else %} No {% endif %} </p>
+    <p>Comentario: {% if object.comentario %} {{object.comentario}} {% else %} No {% endif %} </p>
 
     <h3>Contacto</h3>
-    <p>telefono: {{object.telefono}}</p>
-    <p>email: {{object.email}}</p>
+    <p>Telefono: {{object.telefono}}</p>
+    <p>E-mail: {{object.email}}</p>
 
-    <small>creado: {{object.creado}} - </small>
-    <small>actualizado: {{object.actualizado}}</small>
+    <small>Creado: {{object.creado}} - </small>
+    <small>Actualizado: {{object.actualizado}}</small>
   </div>
 
 </div>
