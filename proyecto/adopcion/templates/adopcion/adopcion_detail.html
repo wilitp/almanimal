@@ -19,15 +19,27 @@
 
   <div class="glider-contain">
     <div class="glider">
+
+      {% if animal.foto1 %}
       <div>
         <div style="background-image: url({{object.foto1.url}})" class="carousel-slide"></div>
       </div>
+      {% else %}
+      <div>
+        <div style="background-image: url({% static 'adopcion/img/no-image.png' %})" class="carousel-slide"></div>
+      </div>
+      {% endif %}
 
-
+      {% if animal.foto2 %}
       {% if object.foto2.name == ""%}
       {% else %}
       <div>
         <div style="background-image: url({{object.foto2.url}})" class="carousel-slide"></div>
+      </div>
+      {% endif %}
+      {% else %}
+      <div>
+        <div style="background-image: url({% static 'adopcion/img/no-image-detail.jpeg' %})" class="carousel-slide"></div>
       </div>
       {% endif %}
 
