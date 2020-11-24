@@ -8,30 +8,41 @@
 {% block cabecera %}
 <h1> Adoptá</h1>
 <p> Encontrá tu compañía ideal</p>
+    <div class="mt-5 w-50 mx-auto">
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'agregar-animal' %}" class="btn btn-primary btn-block">Publicá un animal</a>
+        <br/>
+        {% endif %}
+        <form action="{% url 'adopcion' %}" method="GET">
+            <select class="form-control" name="q" onchange="this.form.submit()">
+                <option value="" {% if not request.GET.q %}selected{% endif %} disabled>Filtrá por...</option>
+                <option value="" {% if request.GET.q == "" %}selected{% endif %}>Todos</option>
+                <option value="Perro" {% if request.GET.q == "Perro" %}selected{% endif %}>Perros</option>
+                <option value="Gato" {% if request.GET.q == "Gato" %}selected{% endif %}>Gatos</option>
+            </select>
+        </form>
+    </div>
 {% endblock cabecera %}
 
 {% block contenido %}
 
-  {% if object_list.count == 0 %}
+  {% if not object_list %}
     <center>
         <br/>
-        <p>No hay animales en adopcion publicados actualmente</p>
+        <p>No hay animales en adopción publicados actualmente</p>
         <br/>
         {% if not request.user.is_authenticated %}
         <p><a href="{% url 'iniciar-sesion' %}">Iniciá sesión</a> para poder publicar animales.</p>
-        {% else %}
-        <a href="{% url 'agregar-animal' %}" class="btn btn-primary">Publicá un animal</a>
+        <hr>
         {% endif %}
     </center>
     {% else %}
     <center>
       {% if not request.user.is_authenticated %}
       <p><a href="{% url 'iniciar-sesion' %}">Iniciá sesión</a> para poder publicar animales.</p>
-      {% else %}
-      <a href="{% url 'agregar-animal' %}" class="btn btn-primary">Publicá un animal</a>
+      <hr>
       {% endif %}
     </center>
-    <hr>
     {% endif %}
   
   <div class="row">
@@ -69,15 +80,9 @@
                     <li class="page-item disabled">
                         <a class="page-link" href="#" tabindex="-1" aria-label="Previous">
 
-                <!-- << If you are at the 2nd page,
-                'Previous' page button will get '/adopcion/' url instead of '/adopcion/?page=1' -->
-                {% elif page_obj.previous_page_number == 1 %}
-                    <li class="page-item">
-                        <a class="page-link" href="{% url 'adopcion' %}" aria-label="Previous">
-
                 {% else %}
                     <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}&q={{request.GET.q}}" aria-label="Previous">
                 {% endif %}
 
                             <span aria-hidden="true">&laquo;</span>
@@ -95,20 +100,12 @@
 
                     {% else %}
                         <li class="page-item">
-                            <!-- For the 1st page we do not use ?page=1 -->
-                            {% if num == 1 %}
-                                <a class="page-link" href="{% url 'adopcion' %}">{{ num }}</a>
+                            {% if num|add:"-3" <= page_obj.number and page_obj.number <= num|add:"3" %}
+                                <a class="page-link" href="?page={{ num }}&q={{request.GET.q}}">{{ num }}</a>
 
-                            {% else %}
-                                <!-- Show current page and +-3 pages -->
-                                {% if num|add:"-3" <= page_obj.number and page_obj.number <= num|add:"3" %}
-                                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-
-                                <!-- Shows every 10th page and the last page -->
-                                {% elif num|divisibleby:"10" or num == page_obj.paginator.num_pages %}
-                                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-                                {% endif %}
-
+                            <!-- Shows every 10th page and the last page -->
+                            {% elif num|divisibleby:"10" or num == page_obj.paginator.num_pages %}
+                                <a class="page-link" href="?page={{ num }}&q={{request.GET.q}}">{{ num }}</a>
                             {% endif %}
                         </li>
                     {% endif %}
@@ -123,7 +120,7 @@
 
                 {% else %}
                     <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}&q={{request.GET.q}}" aria-label="Next">
                 {% endif %}
 
                             <span aria-hidden="true">&raquo;</span>

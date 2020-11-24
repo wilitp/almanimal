@@ -18,7 +18,7 @@ class Efemerides(models.Model):
     texto = RichTextField("Texto")
     foto = models.ImageField("Foto de la Tematica", upload_to="efemerides_photo", default="")
     color = models.CharField("Color", max_length=50, choices=colors)
-    fecha_festividad = models.DateField(("Día de festividad"))
+    fecha_festividad = models.DateField("Día de festividad", unique=True)
     created_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):

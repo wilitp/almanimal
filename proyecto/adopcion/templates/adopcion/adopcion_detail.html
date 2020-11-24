@@ -20,14 +20,14 @@
   <div class="glider-contain">
     <div class="glider">
       <div>
-        <div style="background-image: url({{object.foto1.url}})" class="carousel-slide"></div>
+        <div style="background-image: url({{object.foto1.url}}); background-repeat: no-repeat;" class="carousel-slide"></div>
       </div>
 
 
       {% if object.foto2.name == ""%}
       {% else %}
       <div>
-        <div style="background-image: url({{object.foto2.url}})" class="carousel-slide"></div>
+        <div style="background-image: url({{object.foto2.url}}); background-repeat: no-repeat;" class="carousel-slide"></div>
       </div>
       {% endif %}
 
@@ -40,6 +40,7 @@
 
   <div class="animal-details">
     <h1>{{object.nombre}}</h1>
+    <br/>
 
     <h3>Detalles</h3>
     <p>Raza: {{object.raza}}</p>
