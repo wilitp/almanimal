@@ -52,7 +52,6 @@ class PaginaInicio(models.Model):
 
 class PaginaDonaciones(models.Model):
 
-    description = RichTextField(verbose_name="Texto")
     seo_description = models.CharField("SEO", max_length=255)
     created_date = models.DateTimeField("Fecha de creación", auto_now_add=True)
     last_updated = models.DateTimeField("Última actualización", auto_now=True)
