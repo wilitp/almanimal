@@ -36,16 +36,10 @@
       </div>
       {% endif %}
 
-      {% if animal.foto2 %}
       {% if object.foto2.name == ""%}
       {% else %}
       <div>
         <div style="background-image: url({{object.foto2.url}}); background-repeat: no-repeat;" class="carousel-slide"></div>
-      </div>
-      {% endif %}
-      {% else %}
-      <div>
-        <div style="background-image: url({% static 'adopcion/img/no-image-detail.jpeg' %})" class="carousel-slide"></div>
       </div>
       {% endif %}
 
