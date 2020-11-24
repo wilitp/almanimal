@@ -20,7 +20,18 @@ from django.conf.urls.static import static
 from core.sitemaps import StaticSitemap, DynamicSitemap
 from django.contrib.sitemaps.views import sitemap
 
+
+# Sitemap
+
 sitemaps = {'static' : StaticSitemap, 'dynamic' : DynamicSitemap}
+
+
+# Django admin custom titles
+
+admin.site.site_header = "Administración de Almanimal"
+admin.site.site_title = "Administración de Almanimal"
+admin.site.index_title = "Bienvenido a Administración de Almanimal"
+
 
 urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
