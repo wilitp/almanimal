@@ -28,6 +28,16 @@ class AdopcionListView(ListView):
         queries['seo_description'] = PaginaAdopcion.objects.get(id=1).seo_description
         return queries
 
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            object_list = self.model.objects.filter(tipo_animal=query)
+        elif query == None or query == "":
+            object_list = self.model.objects.all()
+        else:
+            object_list = self.model.objects.none()
+        return object_list 
+
 
 class AdopcionDetailView(DetailView):
 
