@@ -8,6 +8,12 @@
 {% block cabecera %}
 <h1> Almanimal</h1>
 <p> Una ONG de Mendiolaza</p>
+{% if request.user.is_authenticated %}
+  <div class="mt-5 w-50 mx-auto">
+    <a href="{% url 'agregar-animal' %}" class="btn btn-primary btn-block">Publicá un animal</a>
+    <br/>
+  </div>
+{% endif %}
 {% endblock cabecera %}
 
 {% block contenido %}
@@ -22,7 +28,7 @@
 
       {% if animal.foto1 %}
       <div>
-        <div style="background-image: url({{object.foto1.url}})" class="carousel-slide"></div>
+        <div style="background-image: url({{object.foto1.url}}); background-repeat: no-repeat;" class="carousel-slide"></div>
       </div>
       {% else %}
       <div>
@@ -34,7 +40,7 @@
       {% if object.foto2.name == ""%}
       {% else %}
       <div>
-        <div style="background-image: url({{object.foto2.url}})" class="carousel-slide"></div>
+        <div style="background-image: url({{object.foto2.url}}); background-repeat: no-repeat;" class="carousel-slide"></div>
       </div>
       {% endif %}
       {% else %}
@@ -52,6 +58,7 @@
 
   <div class="animal-details">
     <h1>{{object.nombre}}</h1>
+    <br/>
 
     <h3>Detalles</h3>
     <p>Raza: {{object.raza}}</p>

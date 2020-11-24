@@ -21,12 +21,22 @@ class AdopcionListView(ListView):
     model = Animal
     template_name = 'adopcion/adopcion_list.html'
     queryset = Animal.objects.all().order_by('-id').filter(publicado=True)
-    paginate_by = 12
+    paginate_by = 9
 
     def get_context_data(self, **kwargs):
         queries = super(AdopcionListView, self).get_context_data(**kwargs)
         queries['seo_description'] = PaginaAdopcion.objects.get(id=1).seo_description
         return queries
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            object_list = self.model.objects.filter(tipo_animal=query)
+        elif query == None or query == "":
+            object_list = self.model.objects.all()
+        else:
+            object_list = self.model.objects.none()
+        return object_list 
 
 
 class AdopcionDetailView(DetailView):

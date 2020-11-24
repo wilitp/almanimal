@@ -3,11 +3,11 @@
 
 {% block title %} Inicio {% endblock title %}
 
-{% block image %} {% load static %} {% if efemerides %} {% for ef in efemerides|slice:':1' %} {% if today|date:'d/m' == ef.fecha_festividad|date:'d/m' %} {{ ef.foto.url }} {% else %} {% static 'core/img/inicio-bg.jpeg'%} {% endif %} {% endfor %} {% else %} {% static 'core/img/inicio-bg.jpeg'%} {% endif %} {% endblock image %}
+{% block image %} {% load static %} {% if efemerides %} {% for ef in efemerides %} {% if today|date:'d/m' == ef.fecha_festividad|date:'d/m' %} {{ ef.foto.url }} {% else %} {% static 'core/img/inicio-bg.jpeg'%} {% endif %} {% endfor %} {% else %} {% static 'core/img/inicio-bg.jpeg'%} {% endif %} {% endblock image %}
 
 {% block cabecera %}
 <h1> Almanimal</h1>
-<p> Una ONG de Mendiolaza</p>
+<p> Fundación Mendiolaza</p>
 <div class="mt-5 w-50 mx-auto">
   <a href="{% url 'adopcion' %}" class="btn-primary p-2 btn-block no-underline">Adoptar</a>
   <a href="https://www.animanaturalis.org/p/1388/como_denunciar_maltrato_animal_en_argentina" target='_blank'

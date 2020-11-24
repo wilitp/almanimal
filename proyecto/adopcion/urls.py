@@ -21,7 +21,7 @@ urlpatterns = [
     path('adopcion/', AdopcionListView.as_view(), name='adopcion'),
     path('adopcion/<int:pk>', AdopcionDetailView.as_view(), name='adopcion-detail'),
     path('adopcion/agregar-animal', AdopcionFormView.as_view(), name='agregar-animal'),
-    path('adopcion/editar-animal/<int:pk>', AdopcionUpdateView.as_view(), name='editar-animal'),
-    path('adopcion/eliminar-animal/<int:pk>', AdopcionDeleteView.as_view(), name='eliminar-animal'),
+    path('adopcion/<int:pk>/editar/', AdopcionUpdateView.as_view(), name='editar-animal'),
+    path('adopcion/<int:pk>/eliminar/', AdopcionDeleteView.as_view(), name='eliminar-animal'),
 
 ]

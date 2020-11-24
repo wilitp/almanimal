@@ -62,5 +62,4 @@ def contacto(request):
 
 def donaciones(request):
     seo_description = PaginaDonaciones.objects.get(id=1).seo_description
-    texto = PaginaDonaciones.objects.get(id=1).description
-    return render(request, 'core/donaciones.html', {'seo_description' : seo_description, 'texto' : texto})
+    return render(request, 'core/donaciones.html', {'seo_description' : seo_description})
