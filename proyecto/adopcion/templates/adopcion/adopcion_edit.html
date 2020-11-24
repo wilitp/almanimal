@@ -8,6 +8,12 @@
 {% block cabecera %}
 <h1> Adoptá</h1>
 <p> Encontrá tu compañía ideal</p>
+{% if request.user.is_authenticated %}
+  <div class="mt-5 w-50 mx-auto">
+    <a href="{% url 'agregar-animal' %}" class="btn btn-primary btn-block">Publicá un animal</a>
+    <br/>
+  </div>
+{% endif %}
 {% endblock cabecera %}
 
 {% block contenido %}
