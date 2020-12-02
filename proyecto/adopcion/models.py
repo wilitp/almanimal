@@ -23,6 +23,7 @@ class Animal(models.Model):
     class TipoAnimal(models.TextChoices):
         PERRO = 'Perro'
         GATO = 'Gato'
+        OTRO = 'Otro'
 
     class Tiempo(models.TextChoices):
         DIAS = 'Días'
@@ -39,7 +40,7 @@ class Animal(models.Model):
     def __str__(self):
         return self.nombre
 
-    dueño = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Creador')
+    dueño = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Creador', limit_choices_to={'is_staff':True})
     nombre = models.CharField(verbose_name='Nombre', max_length=255, null=False, blank=False)
     tipo_animal = models.CharField(verbose_name='Tipo de animal', max_length=40, choices=TipoAnimal.choices, null=False, blank=False)
     raza = models.CharField(verbose_name='Raza', max_length=255, null=False, blank=False)

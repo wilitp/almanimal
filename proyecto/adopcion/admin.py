@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.contrib import messages
+from django.utils.translation import ngettext
 
 from .models import Animal
 
@@ -6,7 +8,7 @@ from .models import Animal
 @admin.register(Animal)
 class AnimalAdmin(admin.ModelAdmin):
 
-    readonly_fields  = ['dueño', 'actualizado', 'creado', 'image_tag', 'image_tag2']
+    readonly_fields  = ['actualizado', 'creado', 'image_tag', 'image_tag2']
     list_display = ['nombre', 'tipo_animal', 'raza', 'creado', 'publicado', 'image_tag']
     list_filter = ('tipo_animal', 'raza', 'creado', 'publicado')
     actions = ['mark_as_published', 'mark_as_not_published']
@@ -29,15 +31,19 @@ class AnimalAdmin(admin.ModelAdmin):
     )
 
     def mark_as_published(self, request, queryset):
-        queryset.update(publicado=True)
+        updated = queryset.update(publicado=True)
+        self.message_user(request, ngettext(
+            '%d animal fué marcado como publicado.',
+            '%d animales fueron marcados como publicados.',
+            updated,
+        ) % updated, messages.SUCCESS)
     mark_as_published.short_description = "PUBLICADO"
 
     def mark_as_not_published(self, request, queryset):
-        queryset.update(publicado=False)
+        updated = queryset.update(publicado=False)
+        self.message_user(request, ngettext(
+            '%d animal fué marcado como no publicado.',
+            '%d animales fueron marcados como no publicados.',
+            updated,
+        ) % updated, messages.SUCCESS)
     mark_as_not_published.short_description = "NO PUBLICADO"
-
-    def get_readonly_fields(self, request, obj=None):
-        if request.user.is_superuser:
-            return ['actualizado', 'creado', 'image_tag', 'image_tag2']
-        else:
-            return self.readonly_fields

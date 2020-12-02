@@ -5,6 +5,7 @@ from .models import Animal
 TIPO_ANIMAL = (
     ('Perro', 'Perro'),
     ('Gato', 'Gato'),
+    ('Otro', 'Otro'),
 )
 
 TAMAÑO = (

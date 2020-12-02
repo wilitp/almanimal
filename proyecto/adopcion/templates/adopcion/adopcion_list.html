@@ -19,6 +19,7 @@
                 <option value="" {% if request.GET.q == "" %}selected{% endif %}>Todos</option>
                 <option value="Perro" {% if request.GET.q == "Perro" %}selected{% endif %}>Perros</option>
                 <option value="Gato" {% if request.GET.q == "Gato" %}selected{% endif %}>Gatos</option>
+                <option value="Otro" {% if request.GET.q == "Otro" %}selected{% endif %}>Otros</option>
             </select>
         </form>
     </div>
