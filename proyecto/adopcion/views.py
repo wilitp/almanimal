@@ -31,9 +31,9 @@ class AdopcionListView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         if query:
-            object_list = self.model.objects.filter(tipo_animal=query)
+            object_list = self.model.objects.filter(tipo_animal=query, publicado=True).order_by('-id')
         elif query == None or query == "":
-            object_list = self.model.objects.all()
+            object_list = self.model.objects.all().order_by('-id').filter(publicado=True)
         else:
             object_list = self.model.objects.none()
         return object_list 

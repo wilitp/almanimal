@@ -19,6 +19,13 @@ SEXO = (
     ('Indefinido', 'Indefinido'),
 )
 
+TIEMPO = (
+    ('Dias', 'Días'),
+    ('Semanas', 'Semanas'),
+    ('Meses', 'Meses'),
+    ('Años', 'Años'),
+)
+
 class AnimalForm(ModelForm):
 
     nombre = forms.CharField(label="Nombre", max_length=255, required=True, widget=forms.TextInput(
@@ -57,6 +64,13 @@ class AnimalForm(ModelForm):
             'placeholder' : 'Edad',
             'style' : 'margin-bottom:20px; margin-top:20px;',
             'type' : 'tel'
+        }
+    ))
+
+    tiempo = forms.ChoiceField(label="Tiempo", choices=TIEMPO, required=True, widget=forms.Select(
+        attrs={
+            'class' : 'form-control',
+            'style' : 'margin-bottom:20px; margin-top:20px;'
         }
     ))
 
@@ -119,6 +133,7 @@ class AnimalForm(ModelForm):
             'foto1',
             'foto2',
             'edad',
+            'tiempo',
             'sexo',
             'descripcion',
             'caracter',
