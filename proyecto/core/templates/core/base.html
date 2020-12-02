@@ -65,8 +65,17 @@
 				<a class="nav-link {% if request.resolver_match.url_name == 'contacto' %}active{% endif %}" href="{% url 'contacto' %}">Contacto</a>
 			</li>
 			{% if user.is_authenticated %}
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'cerrar-sesion' %}">Cerrar Sesión</a>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ request.user.username | upper }}</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					{% load socialaccount %}
+					{% get_social_accounts user as accounts %}
+					{% if not accounts %}
+					<a class="dropdown-item" href="{% url 'cambiar-contraseña' %}">CAMBIAR CONTRASEÑA</a>
+					<div class="dropdown-divider"></div>
+					{% endif %}
+					<a class="dropdown-item" href="{% url 'cerrar-sesion' %}">CERRAR SESIÓN</a>
+				</div>
 			</li>
 			{% else %}
 			<li class="nav-item">

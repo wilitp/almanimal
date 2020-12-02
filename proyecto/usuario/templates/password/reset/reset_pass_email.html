@@ -1,0 +1,15 @@
+{% autoescape off %}
+
+Nos comunicamos desde Fundación Almanimal Mendiolaza ya que solicitaste un reseteo de contraseña.
+
+Hacé click en el siguiente link para resetear tu contraseña:
+
+{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+
+Tu nombre de usuario es: {{ user.get_username }}
+
+¡Gracias por ser parte de nuestro proyecto!
+
+Fundación Almanimal Mendiolaza
+
+{% endautoescape %}

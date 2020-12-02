@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{title}}</title>
+
+    <!-- Estilos y fuentes del template  -->
+    <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'core/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+	<link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="{% static 'core/css/clean-blog.min.css' %}" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'core/img/icon/apple-touch-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'core/img/icon/favicon-32x32.png' %}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'core/img/icon/favicon-16x16.png' %}">
+	<link rel="manifest" href="{% static 'core/img/icon/site.webmanifest' %}">
+	<link rel="stylesheet" href="{% static 'core/vendor/glider/glider.min.css'%}">
+	<link rel="stylesheet" href="{% static 'core/vendor/glider/custom.css'%}">
+</head>
+<body>
+
+	<style>
+		
+		a, button, .btn {
+			cursor: pointer;
+		}
+
+		.img-header {
+			margin-top: 40px;
+			object-fit: cover;
+			height: 80px;
+		}
+	</style>
+
+	<header>
+		<center>
+			<img class="img-header" src="{% static 'core/img/logo-oscuro.png' %}" alt="Fundación Almanimal Mendiolaza">
+		</center>
+	</header>
+
+	<hr>
+
+    {% block content %}
+	{% endblock %}
+	<center>
+		<a href="{% url 'iniciar-sesion' %}" class="btn btn-dark">Iniciar Sesión</a>
+	</center>
+
+    <!-- Pié de página -->
+	<footer>
+		<hr>
+		<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+			<ul class="list-inline text-center">
+				<li class="list-inline-item">
+				<a href="mailto:almanimalmendiolaza@gmail.com">
+					<span class="fa-stack fa-lg">
+					<i class="fa fa-circle fa-stack-2x"></i>
+					<i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+					</span>
+				</a>
+				</li>
+				<li class="list-inline-item">
+				<a href="https://www.facebook.com/fundacioncallejeritosmendiolaza" target="_blank">
+					<span class="fa-stack fa-lg">
+					<i class="fa fa-circle fa-stack-2x"></i>
+					<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+					</span>
+				</a>
+				</li>
+				<li class="list-inline-item">
+				<a href="https://www.instagram.com/fundalmanimal_/" target="_blank">
+					<span class="fa-stack fa-lg">
+					<i class="fa fa-circle fa-stack-2x"></i>
+					<i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+					</span>
+				</a>
+				</li>
+			</ul>
+			</div>
+		</div>
+		</div>
+		{% if request.user.is_staff %}
+		<br/>
+		<center>
+			<a href="{% url 'admin:index' %}">Ir a Administración de página &rarr;</a>
+		</center>
+		{% endif %}
+	</footer>
+
+    <!-- Bootstrap y Javascript -->
+	<script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
+	<script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'core/js/clean-blog.min.js' %}"></script>
+    <script src="{% static 'core/vendor/glider/glider.min.js' %}"></script>
+    
+</body>
+</html>

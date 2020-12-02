@@ -37,6 +37,8 @@
         } else if (currentTop > this.previousTop) {
           //if scrolling down...
           $('#mainNav').removeClass('is-visible');
+          $('.nav-item.dropdown').removeClass('show');
+          $('.dropdown-menu').removeClass('show');
           if (currentTop > headerHeight && !$('#mainNav').hasClass('is-fixed')) $('#mainNav').addClass('is-fixed');
         }
         this.previousTop = currentTop;
@@ -62,6 +64,8 @@
         } else if (currentTop > this.previousTop) {
           //if scrolling down...
           $('#mainNav').removeClass('is-visible');
+          $('.nav-item.dropdown').removeClass('show');
+          $('.dropdown-menu').removeClass('show');
           if (currentTop > headerHeight && !$('#mainNav').hasClass('is-fixed')) $('#mainNav').addClass('is-fixed');
         }
         this.previousTop = currentTop;

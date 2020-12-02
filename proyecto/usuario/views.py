@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegistroForm
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.utils.translation import ugettext as _
+from allauth.socialaccount.models import SocialAccount
 
 def logIn(request):
 
@@ -52,3 +56,28 @@ def logOut(request):
     logout(request)
 
     return redirect('/')
+
+def change_pass(request):
+
+    socialaccount = SocialAccount.objects.all()
+    accounts_list = []
+    for i in socialaccount:
+        accounts_list.append(i.user.username)
+
+    if not request.user.is_authenticated or request.user.username in accounts_list:
+        return redirect('/')
+
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, _('¡Tu contraseña fué actualizada con éxito!'))
+            return redirect('home')
+        else:
+            messages.error(request, _('Por favor, verificá si ingresaste bien los datos.'))
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'password/change/change_pass.html', {
+        'form': form
+    })

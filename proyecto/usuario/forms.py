@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class RegistroForm(UserCreationForm):
 
@@ -7,6 +8,14 @@ class RegistroForm(UserCreationForm):
         attrs={
             'class': 'form-control',
             'placeholder': 'Nombre de usuario'
+        }
+    ))
+
+    email = forms.EmailField(label="", required=True, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Email',
+            'type': 'email'
         }
     ))
 
@@ -25,3 +34,12 @@ class RegistroForm(UserCreationForm):
             'placeholder': 'Repita contraseña'
         }
     ))
+
+    class Meta:
+        model = User
+        fields = (
+            'username',
+            'email',
+            'password1',
+            'password2',
+        )

@@ -532,3 +532,18 @@ button {
 .bg-orange {
     background-color: #fd8c04;
 }
+
+.nav-item.dropdown.show a.nav-link {
+    background-color: rgba(15, 15, 15, 0.603) !important;
+    color: white !important;
+}
+
+.dropdown-item {
+    font-family: "Caveat", cursive !important;
+    font-weight: 900 !important;
+}
+
+.dropdown-item:focus {
+    color: white !important;
+    background-color: #0085a1 !important;
+}
