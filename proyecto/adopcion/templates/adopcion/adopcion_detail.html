@@ -1,13 +1,13 @@
 {% extends "core/base.html" %}
 
 
-{% block title %} Adoptar {% endblock title %}
+{% block title %} {{ animal.nombre }} {% endblock title %}
 
 {% block image %} {% load static %} {% static 'core/img/adopcion-bg.jpg'%} {% endblock image %}
 
 {% block cabecera %}
-<h1> Almanimal</h1>
-<p> Una ONG de Mendiolaza</p>
+<h1> {{ animal.nombre }} </h1>
+<p> {{ animal.raza }} </p>
 {% if request.user.is_authenticated %}
   <div class="mt-5 w-50 mx-auto">
     <a href="{% url 'agregar-animal' %}" class="btn btn-primary btn-block">Publicá un animal</a>
