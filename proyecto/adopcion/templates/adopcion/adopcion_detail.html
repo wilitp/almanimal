@@ -6,13 +6,13 @@
 {% block image %} {% load static %} {% static 'core/img/adopcion-bg.jpg'%} {% endblock image %}
 
 {% block cabecera %}
-<<<<<<< HEAD
+
 <h1> Adoptá</h1>
 <p> Encontrá tu compañía ideal</p>
-=======
+
 <h1> {{ animal.nombre }} </h1>
 <p> {{ animal.raza }} </p>
->>>>>>> deb6a167e2cf6d6883bb1aa5e2d313f911ddd383
+
 {% if request.user.is_authenticated %}
   <div class="mt-5 w-50 mx-auto">
     <a href="{% url 'agregar-animal' %}" class="btn btn-primary btn-block">Publicá un animal</a>
