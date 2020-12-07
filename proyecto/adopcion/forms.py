@@ -9,9 +9,9 @@ TIPO_ANIMAL = (
 )
 
 TAMAÑO = (
-    ('Grande', 'Grande'),
-    ('Mediano', 'Mediano'),
     ('Chico', 'Chico'),
+    ('Mediano', 'Mediano'),
+    ('Grande', 'Grande'),
 )
 
 SEXO = (
@@ -29,7 +29,7 @@ TIEMPO = (
 
 class AnimalForm(ModelForm):
 
-    nombre = forms.CharField(label="Nombre", max_length=255, required=True, widget=forms.TextInput(
+    nombre = forms.CharField(label="Nombre", max_length=30, required=True, widget=forms.TextInput(
         attrs={
             'class' : 'form-control',
             'placeholder' : 'Nombre',
@@ -44,7 +44,7 @@ class AnimalForm(ModelForm):
         }
     ))
 
-    raza = forms.CharField(label="Raza", max_length=255, required=True, widget=forms.TextInput(
+    raza = forms.CharField(label="Raza", max_length=30, required=True, widget=forms.TextInput(
         attrs={
             'class' : 'form-control',
             'placeholder' : 'Raza',
@@ -59,7 +59,7 @@ class AnimalForm(ModelForm):
         }
     ))
 
-    edad = forms.CharField(label="Edad", max_length=255, required=True, widget=forms.TextInput(
+    edad = forms.CharField(label="Edad", max_length=2, required=True, widget=forms.TextInput(
         attrs={
             'class' : 'form-control',
             'placeholder' : 'Edad',
@@ -98,7 +98,7 @@ class AnimalForm(ModelForm):
         }
     ))
 
-    comentario = forms.CharField(label="Comentario", required=True, widget=forms.Textarea(
+    comentario = forms.CharField(label="Comentario", required=False, widget=forms.Textarea(
         attrs={
             'class' : 'form-control',
             'style' : 'margin-bottom:20px; margin-top:20px;',
@@ -106,7 +106,7 @@ class AnimalForm(ModelForm):
         }
     ))
 
-    telefono = forms.CharField(label="Teléfono de contacto", max_length=255, required=True, widget=forms.TextInput(
+    telefono = forms.CharField(label="Teléfono de contacto", max_length=20, required=True, widget=forms.TextInput(
         attrs={
             'class' : 'form-control',
             'placeholder' : 'Teléfono',
@@ -115,7 +115,7 @@ class AnimalForm(ModelForm):
         }
     ))
 
-    email = forms.CharField(label="Email de contacto", max_length=255, required=True, widget=forms.TextInput(
+    email = forms.CharField(label="Email de contacto", max_length=50, required=True, widget=forms.TextInput(
         attrs={
             'class' : 'form-control',
             'placeholder' : 'Email',

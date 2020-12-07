@@ -60,9 +60,7 @@ class AdopcionFormView(CreateView):
                 a = form.save(commit=False)
                 a.dueño = User.objects.get(id=request.user.id)
                 a.save()
-
                 return redirect('adopcion')
-
 
 class AdopcionUpdateView(UpdateView):
 

@@ -15,10 +15,9 @@ class Animal(models.Model):
 
 
     class Tamaño(models.TextChoices):
-        GRANDE = 'Grande'
+        CHICO = 'Chico'      
         MEDIANO = 'Mediano'
-        CHICO = 'Chico'
-
+        GRANDE = 'Grande'
 
     class TipoAnimal(models.TextChoices):
         PERRO = 'Perro'
@@ -26,7 +25,7 @@ class Animal(models.Model):
         OTRO = 'Otro'
 
     class Tiempo(models.TextChoices):
-        DIAS = 'Días'
+        DIAS = 'Dias'
         SEMANAS = 'Semanas'
         MESES = 'Meses'
         AÑOS = 'Años'
@@ -41,23 +40,23 @@ class Animal(models.Model):
         return self.nombre
 
     dueño = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Creador', limit_choices_to={'is_staff':True})
-    nombre = models.CharField(verbose_name='Nombre', max_length=255, null=False, blank=False)
+    nombre = models.CharField(verbose_name='Nombre', max_length=30, null=False, blank=False)
     tipo_animal = models.CharField(verbose_name='Tipo de animal', max_length=40, choices=TipoAnimal.choices, null=False, blank=False)
-    raza = models.CharField(verbose_name='Raza', max_length=255, null=False, blank=False)
+    raza = models.CharField(verbose_name='Raza', max_length=30, null=False, blank=False)
     tamaño = models.CharField(verbose_name='Tamaño', max_length=40, choices=Tamaño.choices, null=False, blank=False)
     foto1 = models.ImageField(verbose_name="Foto 1", blank=True, null=True, upload_to='foto1')
     foto2 = models.ImageField(verbose_name="Foto 2", blank=True, null=True, upload_to='foto2')
     edad = models.IntegerField(verbose_name='Edad', null=False, blank=False)
-    tiempo = models.CharField("Tiempo", max_length=50, choices=Tiempo.choices, null=False, blank=False)
-    sexo = models.CharField(verbose_name='Sexo', max_length=40, choices=Sexo.choices, null=False, blank=False)
+    tiempo = models.CharField("Tiempo", max_length=20, choices=Tiempo.choices, null=False, blank=False)
+    sexo = models.CharField(verbose_name='Sexo', max_length=20, choices=Sexo.choices, null=False, blank=False)
     descripcion = models.TextField(verbose_name='Descripcion', null=False, blank=False)
     caracter = models.TextField(verbose_name='Carácter', null=True, blank=True)
     vacunado = models.BooleanField(verbose_name='Vacunado', null=False, blank=False)
     desparasitado = models.BooleanField(verbose_name='Desparasitado', null=False, blank=False)
     castrado = models.BooleanField(verbose_name='Castrado', null=False, blank=False)
     comentario = models.TextField(verbose_name='Comentarios', null=True, blank=True)
-    telefono = models.CharField("Teléfono de contacto", max_length=50)
-    email = models.EmailField("Email de contacto", max_length=254)
+    telefono = models.CharField("Teléfono de contacto", max_length=20)
+    email = models.EmailField("Email de contacto", max_length=50)
     publicado = models.BooleanField(verbose_name='Publicado', default=False)
     creado = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creación')
     actualizado = models.DateTimeField(auto_now=True,verbose_name='Ultima actualización')
