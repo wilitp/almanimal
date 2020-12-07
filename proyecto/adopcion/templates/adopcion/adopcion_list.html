@@ -59,7 +59,7 @@
     {% endif %}
       <div class="card-body">
         <h5 class="card-title">{{ animal.nombre }}</h5>
-        <p class="card-subtitle"> {{ animal.tipo_animal }}, {{ animal.raza }}</p>
+        <p class="card-subtitle"> {{ animal.tipo_animal }}, {{ animal.raza }}, {{ animal.edad }} {{ animal.tiempo }}</p>
         <p class="card-text"> {{ animal.descripcion|truncatechars:100 }}</p>
         <a href="{% url 'adopcion-detail' animal.pk %}" class="btn btn-primary">Detalle</a>
         {% if animal.dueño.id == request.user.id %}
