@@ -12,8 +12,8 @@
 
 {% block contenido %}
 
-    <a href="{% url 'adopcion' %}">&larr; Volver</a>
-    <br><br>
+<a href="{% url 'adopcion' %}">&larr; Volver</a>
+<br><br>
 
     {% if request.user.is_authenticated %}
 
@@ -29,7 +29,10 @@
         </form>
 
     </div>
-    
+
+<br><br>
+<a href="{% url 'adopcion' %}">&larr; Volver</a>
+
     <script type="text/javascript">
         var specialKeys = new Array();
         specialKeys.push(8); //Backspace

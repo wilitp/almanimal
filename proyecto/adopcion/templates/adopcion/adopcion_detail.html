@@ -78,11 +78,14 @@
     <p>Telefono: {{object.telefono}}</p>
     <p>E-mail: {{object.email}}</p>
 
-    <small>Creado: {{object.creado}} - </small>
+    <small>Creado: {{object.creado}}</small>
     <small>Actualizado: {{object.actualizado}}</small>
   </div>
-
+ 
 </div>
+
+<br><br>
+<a href="{% url 'adopcion' %}">&larr; Volver</a>
 
 <script>
   window.addEventListener('load', function () {
