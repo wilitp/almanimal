@@ -81,6 +81,7 @@ class Animal(models.Model):
 
 
     def save(self, *args, **kwargs):
+        # Borrando imagen anterior cuando es actualizada
         try:
             this = Animal.objects.get(id=self.id)
             if this.foto1 != self.foto1:
@@ -89,5 +90,10 @@ class Animal(models.Model):
                 this.foto2.delete()
         except:
             pass
+
+        # Chequeando si el usuario es staff para determinar si publicado debe ser True o False
+        if self.dueño.is_staff:
+            self.publicado = True
+
         super(Animal, self).save(*args, **kwargs)
 
