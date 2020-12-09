@@ -63,7 +63,7 @@
     {% endif %}
     <button class="btn btn-lg btn-primary btn-block" id="submit-btn" type="submit">Registrarse</button>
     <br/>
-    <a href="{% url 'iniciar-sesion' %}">Si ya tenés cuenta, logueate</a>
+    <a href="{% url 'iniciar-sesion' %}">Si ya tenés cuenta, clickeá acá para iniciar sesión.</a>
 </form>
 
 <script>
@@ -73,7 +73,7 @@
         var pass1 = $(this).val();
 
         if (pass1.length < 8) {
-            $('#pass1-message').text("La contraseña debe contener, al menos, 8 caractéres.");
+            $('#pass1-message').text("La contraseña debe contener, al menos, 8 caracteres.");
             $('#submit-btn').attr('disabled', 'disabled');
         }
         else {

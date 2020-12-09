@@ -9,7 +9,7 @@ class Blog(models.Model):
     title = models.CharField("Título", max_length=50, default="")
     photo = models.ImageField("Foto de encabezado", upload_to="blog_photo", blank=False, null=False, default="")
     blog_body = RichTextField(verbose_name="Texto")
-    published = models.BooleanField("Publicado", default=True)
+    published = models.BooleanField("Publicado", default=False)
     created_date = models.DateTimeField("Fecha de creación", auto_now_add=True)
     last_updated = models.DateTimeField("Última actualización", auto_now=True)
 
