@@ -11,7 +11,7 @@
 <h1>Informate</h1>
 <p>Noticias y eventos de la comunidad</p>
 
-{% if request.user.is_authenticated %}
+{% if request.user.is_authenticated and request.user.is_staff %}
 <center>
     <br>
     <a href="{% url 'admin:blog_blog_add' %}" class="btn btn-primary">Publicá un blog</a>
