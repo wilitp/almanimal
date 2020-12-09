@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from core.image_compress import compress
 
 class Efemerides(models.Model):
 
