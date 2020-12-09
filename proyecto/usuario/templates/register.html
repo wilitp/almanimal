@@ -8,7 +8,7 @@
 {% block image %} {% load static %} {% static 'core/img/login-bg.jpg'%} {% endblock image %}
 
 {% block cabecera %}
-<h1> Registráte </h1>
+<h1> Registrate </h1>
 {% endblock cabecera %}
 
 {% block contenido %}
@@ -50,6 +50,10 @@
     <p></p>
     {{ form.email }}
     <p></p>
+    {{ form.name }}
+    <p></p>
+    {{ form.surname }}
+    <p></p>
     {{ form.password1 }}
     <p id="pass1-message"></p>
     {{ form.password2 }}
@@ -63,7 +67,7 @@
     {% endif %}
     <button class="btn btn-lg btn-primary btn-block" id="submit-btn" type="submit">Registrarse</button>
     <br/>
-    <a href="{% url 'iniciar-sesion' %}">Si ya tenés cuenta, clickeá acá para iniciar sesión.</a>
+    <a href="{% url 'iniciar-sesion' %}">Si ya tenés una cuenta, clickeá acá para iniciar sesión.</a>
 </form>
 
 <script>

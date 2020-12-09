@@ -32,7 +32,7 @@ def contacto(request):
         consulta = request.POST.get('body')
 
         if nombre == "" or apellido == "" or email == "" or asunto == "" or consulta == "" or categoria == "":
-            return HttpResponse("Completá los campos obligatorios")
+            return HttpResponse("Completá los campos obligatorios (*)")
 
         fecha = str(datetime.now())
 

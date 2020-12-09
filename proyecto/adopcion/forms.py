@@ -102,7 +102,7 @@ class AnimalForm(ModelForm):
         attrs={
             'class' : 'form-control',
             'style' : 'margin-bottom:20px; margin-top:20px;',
-            'placeholder' : 'Comentario...'
+            'placeholder' : 'Comentario... (opcional)'
         }
     ))
 

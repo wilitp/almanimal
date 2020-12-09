@@ -7,7 +7,21 @@ class RegistroForm(UserCreationForm):
     username = forms.CharField(label="", required=True, widget=forms.TextInput(
         attrs={
             'class': 'form-control',
-            'placeholder': 'Nombre de usuario'
+            'placeholder': 'Nombre de Usuario'
+        }
+    ))
+
+    name = forms.CharField(label="", required=True, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Nombre'
+        }
+    ))
+
+    surname = forms.CharField(label="", required=True, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Apellido'
         }
     ))
 
@@ -39,6 +53,8 @@ class RegistroForm(UserCreationForm):
         model = User
         fields = (
             'username',
+            'name',
+            'surname',
             'email',
             'password1',
             'password2',
