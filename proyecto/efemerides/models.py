@@ -25,12 +25,17 @@ class Efemerides(models.Model):
         return self.titulo
     
     def save(self, *args, **kwargs):
+        # Borrando imagen anterior cuando es actualizada
         try:
             this = Efemerides.objects.get(id=self.id)
             if this.foto != self.foto:
                 this.foto.delete()
         except:
             pass
+
+        # Comprimiendo imagen
+        self.foto = compress(foto)
+
         super(Efemerides, self).save(*args, **kwargs)
 
     class Meta:

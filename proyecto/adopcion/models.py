@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.html import mark_safe
 from django.templatetags.static import static
+from core.image_compress import compress
 
 # Create your models here.
 
@@ -94,6 +95,11 @@ class Animal(models.Model):
         # Chequeando si el usuario es staff para determinar si publicado debe ser True o False
         if self.dueño.is_staff:
             self.publicado = True
+
+        # Comprimiendo imagenes
+        self.foto1 = compress(self.foto1)
+        self.foto2 = compress(self.foto2)
+        
 
         super(Animal, self).save(*args, **kwargs)
 
