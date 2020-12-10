@@ -47,8 +47,3 @@ class AnimalAdmin(admin.ModelAdmin):
             updated,
         ) % updated, messages.SUCCESS)
     mark_as_not_published.short_description = "NO PUBLICADO"
-
-    class Media:
-        js = (
-            'adopcion/js/choices.js',
-        )
