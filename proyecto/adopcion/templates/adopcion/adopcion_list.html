@@ -57,15 +57,17 @@
     {% else %}
       <img class="card-img-top" src="{% static 'adopcion/img/no-image.png' %}" id="adop_list_img" height="200" alt="Card image cap">
     {% endif %}
-      <div class="card-body">
-        <h5 class="card-title">{{ animal.nombre }}</h5>
-        <p class="card-subtitle"> {{ animal.tipo_animal }}, {% if animal.tipo_animal == 'Perro' %} {{ animal.raza_perro }}, {% elif animal.tipo_animal == 'Gato' %} {{ animal.raza_gato }}, {% else %} {% endif %} {{ animal.edad }} {{ animal.tiempo | lower }}</p>
-        <p class="card-text"> {{ animal.descripcion|truncatechars:100 }}</p>
-        <a href="{% url 'adopcion-detail' animal.pk %}" class="btn btn-primary">Detalle</a>
-        {% if animal.dueño.id == request.user.id %}
-        <a href="{% url 'editar-animal' animal.pk %}" class="btn btn-outline-primary">Editar</a>
-        {% endif %}
-      </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ animal.nombre }}</h5>
+            <p class="card-subtitle"> {{ animal.tipo_animal }}, {% if animal.tipo_animal == 'Perro' %} {{ animal.raza_perro }}, {% elif animal.tipo_animal == 'Gato' %} {{ animal.raza_gato }}, {% else %} {% endif %} {{ animal.edad }} {{ animal.tiempo | lower }}</p>
+            <p class="card-text"> {{ animal.descripcion|truncatechars:100 }}</p>
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'adopcion-detail' animal.pk %}" class="btn btn-primary">Detalle</a>
+            {% if animal.dueño.id == request.user.id %}
+            <a href="{% url 'editar-animal' animal.pk %}" class="btn btn-outline-primary">Editar</a>
+            {% endif %}
+        </div>
     </div>
   {% endfor %}
 
