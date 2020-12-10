@@ -35,7 +35,8 @@ class Efemerides(models.Model):
             pass
 
         # Comprimiendo imagen
-        self.foto = compress(foto)
+        if self.foto.size > 1000000:
+            self.foto = compress(foto)
 
         super(Efemerides, self).save(*args, **kwargs)
 

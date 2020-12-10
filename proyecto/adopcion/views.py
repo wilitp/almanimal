@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 
 
 from django.views.generic.list import ListView
@@ -61,6 +61,9 @@ class AdopcionFormView(CreateView):
                 a.dueño = User.objects.get(id=request.user.id)
                 a.save()
                 return redirect('adopcion')
+            
+            else:
+                return HttpResponse('<h1>Hubo un error publicando el animal. Intentá nuevamente más tarde.</h1>')
 
 class AdopcionUpdateView(UpdateView):
 

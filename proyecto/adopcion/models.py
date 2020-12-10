@@ -31,6 +31,75 @@ class Animal(models.Model):
         MESES = 'Meses'
         AÑOS = 'Años'
 
+    class RazaGato(models.TextChoices):
+        MESTIZO = 'Mestizo'
+        AMERICANO_DE_PELO_CORTO = 'Americano De Pelo Corto'
+        ANGORA_TURCO = 'Angora Turco'
+        AZUL_RUSO = 'Azul Ruso'
+        BENGALI = 'Bengali'
+        BOMBAY = 'Bombay'
+        BRITISH_SHORTHAIR = 'British Shorthair'
+        EUROPEO_DE_PELO_CORTO = 'Europeo De Pelo Corto'
+        PERSA = 'Persa'
+        SAGRADO_DE_BIRMANIA = 'Sagrado De Birmania'
+        SIAMES = 'Siames'
+        SNOWSHOE = 'Snowshoe'
+
+    class RazaPerro(models.TextChoices):
+        MESTIZO = 'Mestizo'
+        AKITA_INU = 'Akita Inu'
+        BASSET_HOUND_O_BATATA = 'Basset Hound O Batata'
+        BEAGLE = 'Beagle'
+        BICHON_FRISE = 'Bichon Frise'
+        BORDER_COLLIE = 'Border Collie'
+        BOXER = 'Boxer'
+        BRACO_ALEMAN_KURZHAAR = 'Braco Aleman Kurzhaar'
+        BRACO_HUNGARO_O_VIZSLA = 'Braco hungaro O Vizsla'
+        BRETON = 'Breton'
+        BULL_TERRIER = 'Bull Terrier'
+        BULLDOG_FRANCES = 'Bulldog Frances'
+        BULLDOG_INGLES = 'Bulldog Ingles'
+        CANICHE = 'Caniche'
+        CHIHUAHUA = 'Chihuahua'
+        CHOW_CHOW = 'Chow Chow'
+        COCKER_SPANIEL = 'Cocker Spaniel'
+        COLLIE = 'Collie'
+        DACHSHUND_O_SALCHICHA = 'Dachshund O Salchicha'
+        DALMATA = 'Dalmata'
+        DOBERMAN = 'Doberman'
+        DOGO_ARGENTINO = 'Dogo Argentino'
+        DOGO_DE_BURDEOS = 'Dogo de Burdeos'
+        FOX_TERRIER = 'Fox Terrier'
+        GALGO = 'Galgo'
+        GOLDEN_RETRIEVER = 'Golden Retriever'
+        GRAN_DANES = 'Gran Danes'
+        JACK_RUSSELL_TERRIER = 'Jack Russell Terrier'
+        LABRADOR_RETRIEVER = 'Labrador Retriever'
+        LHASA_APSO = 'Lhasa Apso'
+        MALTES = 'Maltes'
+        MASTIN_NAPOLITANO = 'Mastin Napolitano'
+        OVEJERO_ALEMAN = 'Ovejero Aleman'
+        PASTOR_BELGA = 'Pastor Belga'
+        PASTOR_INGLES = 'Pastor Ingles'
+        PEKINES = 'Pekines'
+        PILA = 'Pila'
+        PINSCHER = 'Pinscher'
+        PITBULL = 'Pitbull'
+        POINTER = 'Pointer'
+        PRESA_CANARIO = 'Presa Canario'
+        PUG = 'Pug'
+        ROTTWEILER = 'Rottweiler'
+        SAMOYEDO = 'Samoyedo'
+        SAN_BERNARDO = 'San Bernardo'
+        SCHNAUZER = 'Schnauzer'
+        SETTER_IRLANDES = 'Setter Irlandes'
+        SHAR_PEI = 'Shar Pei'
+        SHIBA_INU = 'Shiba Inu'
+        SHIH_TZUHUSKY_SIBERIANO = 'Shih TzuHusky Siberiano'
+        WEIMARANER = 'Weimaraner'
+        WHIPPET = 'Whippet'
+        YORKSHIRE_TERRIER = 'Yorkshire Terrier'
+
 
     class Meta:
         verbose_name = 'Animal'
@@ -43,7 +112,8 @@ class Animal(models.Model):
     dueño = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Creador', limit_choices_to={'is_staff':True})
     nombre = models.CharField(verbose_name='Nombre', max_length=30, null=False, blank=False)
     tipo_animal = models.CharField(verbose_name='Tipo de animal', max_length=40, choices=TipoAnimal.choices, null=False, blank=False)
-    raza = models.CharField(verbose_name='Raza', max_length=30, null=False, blank=False)
+    raza_perro = models.CharField(verbose_name='Raza Perro', help_text='Dejar en blanco si es Gato u Otro', max_length=255, choices=RazaPerro.choices, null=True, blank=True)
+    raza_gato = models.CharField(verbose_name='Raza Gato', help_text='Dejar en blanco si es Perro u Otro', max_length=255, choices=RazaGato.choices, null=True, blank=True)
     tamaño = models.CharField(verbose_name='Tamaño', max_length=40, choices=Tamaño.choices, null=False, blank=False)
     foto1 = models.ImageField(verbose_name="Foto 1", blank=True, null=True, upload_to='foto1')
     foto2 = models.ImageField(verbose_name="Foto 2", blank=True, null=True, upload_to='foto2')
@@ -97,9 +167,14 @@ class Animal(models.Model):
             self.publicado = True
 
         # Comprimiendo imagenes
-        self.foto1 = compress(self.foto1)
-        self.foto2 = compress(self.foto2)
+        if self.foto1:
+            if self.foto1.size > 1000000:
+                self.foto1 = compress(self.foto1)
         
+        if self.foto2:
+            if self.foto2.size > 1000000:
+                self.foto2 = compress(self.foto2)
+
 
         super(Animal, self).save(*args, **kwargs)
 

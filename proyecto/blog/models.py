@@ -27,7 +27,8 @@ class Blog(models.Model):
             pass
 
         # Comprimiendo imagenes
-        self.photo = compress(photo)
+        if self.photo.size > 1000000:
+            self.photo = compress(photo)
         
         super(Blog, self).save(*args, **kwargs)
     
