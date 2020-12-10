@@ -60,7 +60,7 @@
     <p>Raza: {% if animal.tipo_animal == 'Perro' %} {{ animal.raza_perro }} {% elif animal.tipo_animal == 'Gato' %} {{ animal.raza_gato }} {% endif %}</p>
     {% endif %}
     <p>Sexo: {{object.sexo}}</p>
-    <p>Edad: {{object.edad}} {{object.tiempo}} </p>
+    <p>Edad: {{object.edad}} {{object.tiempo | lower}} </p>
     <p>Caracter: {{object.caracter}}</p>
 
     <h3>Descripción</h3>

@@ -194,7 +194,21 @@
         $("#id_desparasitado").addClass('form-check-input');
         $("#id_castrado").addClass('form-check-input');
 
-        $("#gato").hide();
+        var tipo_animal = $("#id_tipo_animal").val();
+        if (tipo_animal == "Perro") {
+            $("#gato").hide();
+            $("#perro").show();
+        }
+        else if (tipo_animal == "Gato") {
+            $("#gato").show();
+            $("#perro").hide();
+        }
+        else {
+            $("#gato").hide();
+            $("#perro").hide();
+        }
+
+        
         $("#id_tipo_animal").change(function() {
             var val = $(this).val();
             if (val == "Perro") {
