@@ -175,6 +175,15 @@ class Animal(models.Model):
             if self.foto2.size > 1000000:
                 self.foto2 = compress(self.foto2)
 
+        # Chequeando el tipo de animal para dejar en nulo los camplos innecesarios
+        if str(self.tipo_animal) == 'Perro':
+            self.raza_gato = None
+        elif str(self.tipo_animal) == 'Gato':
+            self.raza_perro = None
+        else:
+            self.raza_perro = None
+            self.raza_gato = None
+
 
         super(Animal, self).save(*args, **kwargs)
 
