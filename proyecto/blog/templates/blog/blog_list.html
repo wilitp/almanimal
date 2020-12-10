@@ -27,15 +27,7 @@
         <p>No hay blogs publicados actualmente</p>
     </center>
     {% endif %}
-    {% for blog in blog_list %}
-
-    <center>
-        {% if not request.user.is_authenticated %}
-        <p><a href="{% url 'iniciar-sesion' %}">Iniciá sesión</a> para poder publicar artículos.</p>
-        <hr>
-        {% endif %}
-    </center>
-    
+    {% for blog in blog_list %}    
 
         <br/>
     
