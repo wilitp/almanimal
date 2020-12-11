@@ -130,3 +130,5 @@ almanimalVenv
 
 # End of https://www.gitignore.io/api/django
 >>>>>>> usuarios
+
+.env*
