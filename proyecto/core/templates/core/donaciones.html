@@ -16,12 +16,7 @@
 
   <div>
   <h1>A través de Transferencia Bancaria</h1>
-  <p>Información general para hacer donaciones a través de CBU.</p>
-  <p>Cta.Cte. en pesos en Bco. de Córdoba</p>
-  <p>CBU 0200392201000001008929</p>
-  <p>Titular: FUNDACIÓN ALMANIMAL MENDIOLAZA</p>
-  <p>CUIT: 30-71603083-7</p>
-  <p>Fundación 2018</p>
+  {{ info_cbu | safe}}
   </div>
 
   <br>
@@ -67,7 +62,7 @@
       <ul>Actualmente no disponible.</ul>
 <!--       <img src="{% static 'core/img/qr_paypal.png'%}"> -->
   </div>
-  
+
 </div>
 {% endblock contenido %}
 
