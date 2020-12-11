@@ -8,26 +8,26 @@
 {% block image %} {% load static %} {% static 'core/img/blog-bg.jpg'%} {% endblock image %}
 
 {% block cabecera %}
-<h1> Informáte</h1>
-<p> Noticias y eventos de la comunidad</p>
+<h1>Informate</h1>
+<p>Noticias y eventos de la comunidad</p>
+
+{% if request.user.is_authenticated and request.user.is_staff %}
+<center>
+    <br>
+    <a href="{% url 'admin:blog_blog_add' %}" class="btn btn-primary">Publicá un blog</a>
+</center>
+{% endif %}
+
 {% endblock cabecera %}
 
 {% block contenido %}
-
-    {% if request.user.is_staff %}
-    <center>
-        <a href="{% url 'admin:blog_blog_add' %}" class="btn btn-primary">Publicá un blog</a>
-        <hr>
-    </center>
-    {% endif %}
     
     {% if blog_list.count == 0 %}
     <center>
-        <br/>
         <p>No hay blogs publicados actualmente</p>
     </center>
     {% endif %}
-    {% for blog in blog_list %}
+    {% for blog in blog_list %}    
 
         <br/>
     

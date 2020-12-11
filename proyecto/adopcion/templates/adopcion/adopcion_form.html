@@ -12,23 +12,123 @@
 
 {% block contenido %}
 
-    <a href="{% url 'adopcion' %}">&larr; Volver</a>
-    <br><br>
+<a href="{% url 'adopcion' %}">&larr; Volver</a>
+<br><br>
 
     {% if request.user.is_authenticated %}
 
-    <div class="col-8">
+    <div class="col-12">
 
         <form action="{% url 'agregar-animal' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
 
-            {{form.as_p}}
+            <div class="card-deck">
+                <div class="card">
+                    <h5 class="card-header">Detalles</h5>
+                    <div class="card-body">
+                        <label for="id_nombre">Nombre:</label>
+                        {{ form.nombre }}
+                        <br>
+                        <label for="id_tipo_animal">Tipo de animal:</label>
+                        {{ form.tipo_animal }}
+                        <br>
+                        <div id="perro">
+                            <label for="id_raza_perro">Raza:</label>
+                            {{ form.raza_perro }}
+                            <br>
+                        </div>
+                        <div id="gato">
+                            <label for="id_raza_gato">Raza:</label>
+                            {{ form.raza_gato }}
+                            <br>
+                        </div>
+                        <label for="id_sexo">Sexo:</label>
+                        {{ form.sexo }}
+                        <br>
+                        <label for="id_tamaño">Tamaño:</label>
+                        {{ form.tamaño }}
+                        <br>
+                        <label for="id_edad">Edad:</label>
+                        {{ form.edad }}
+                        <br>
+                        <label for="id_tiempo">Tiempo:</label>
+                        {{ form.tiempo }}
+                        <br>
+                        <label for="id_caracter">Caracter:</label>
+                        {{ form.caracter }}
+                        <br>
+                        <label for="id_descripcion">Descripción:</label>
+                        {{ form.descripcion }}
+                    </div>
+                </div>
 
-            <button name="submit" type="submit" class="btn btn-primary">Publicar</button>
+            </div>
 
+            <br>
+
+            <div class="card-deck">
+
+                <div class="card">
+                    <h5 class="card-header">Veterinaria</h5>
+                    <div class="card-body">
+                        
+                        <div class="form-check col-md-2">
+                            {{ form.vacunado }}
+                            <label class="form-check-label" for="id_vacunado">Vacunado</label>
+                        </div>
+
+                        <div class="form-check col-md-2">
+                            {{ form.desparasitado }}
+                            <label class="form-check-label" for="id_desparasitado">Desparasitado</label>
+                        </div>
+
+                        <div class="form-check col-md-2">
+                            {{ form.castrado }}
+                            <label class="form-check-label" for="id_castrado">Castrado</label>
+                        </div>
+
+                        {{ form.comentario }}
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h5 class="card-header">Contacto</h5>
+                    <div class="card-body">
+                        {{ form.telefono }}
+                        {{ form.email }}
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="card-deck">
+
+                <div class="card">
+                  <h5 class="card-header">Fotos</h5>
+                  <div class="card-body">
+                      <br>
+                      {{ form.foto1 }}
+                      <hr>
+                      {{ form.foto2 }}
+                      <br><br>
+                  </div>
+                </div>
+    
+              </div>
+
+            <br>
+            <small id="bodyHelpBlock" class="form-text text-muted">Los campos que contienen (*) son obligatorios.</small>
+            <br>
+            <button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">Publicar</button>
+            
         </form>
 
     </div>
+
+<br><br>
+<a href="{% url 'adopcion' %}">&larr; Volver</a>
 
     <script type="text/javascript">
         var specialKeys = new Array();
@@ -42,6 +142,31 @@
         var tel = document.getElementById("id_telefono")
         edad.onkeypress = IsNumeric;
         tel.onkeypress = IsNumeric;
+
+        $(document).ready(function() {
+
+            $("#id_vacunado").addClass('form-check-input');
+            $("#id_desparasitado").addClass('form-check-input');
+            $("#id_castrado").addClass('form-check-input');
+
+            $("#gato").hide();
+            $("#id_tipo_animal").change(function() {
+                var val = $(this).val();
+                if (val == "Perro") {
+                    $("#gato").hide();
+                    $("#perro").show();
+                }
+                else if (val == "Gato") {
+                    $("#gato").show();
+                    $("#perro").hide();
+                }
+                else {
+                    $("#gato").hide();
+                    $("#perro").hide();
+                }
+            });
+        });
+
     </script>
 
     {% else %}

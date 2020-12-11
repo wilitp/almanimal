@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 
 
 from django.views.generic.list import ListView
@@ -31,9 +31,9 @@ class AdopcionListView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         if query:
-            object_list = self.model.objects.filter(tipo_animal=query)
+            object_list = self.model.objects.filter(tipo_animal=query, publicado=True).order_by('-id')
         elif query == None or query == "":
-            object_list = self.model.objects.all()
+            object_list = self.model.objects.all().order_by('-id').filter(publicado=True)
         else:
             object_list = self.model.objects.none()
         return object_list 
@@ -60,9 +60,10 @@ class AdopcionFormView(CreateView):
                 a = form.save(commit=False)
                 a.dueño = User.objects.get(id=request.user.id)
                 a.save()
-
                 return redirect('adopcion')
-
+            
+            else:
+                return HttpResponse('<h1>Hubo un error publicando el animal. Intentá nuevamente más tarde.</h1>')
 
 class AdopcionUpdateView(UpdateView):
 

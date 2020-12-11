@@ -8,7 +8,7 @@
 {% block image %} {% load static %} {% static 'core/img/login-bg.jpg'%} {% endblock image %}
 
 {% block cabecera %}
-<h1> Registráte </h1>
+<h1> Registrate </h1>
 {% endblock cabecera %}
 
 {% block contenido %}
@@ -48,6 +48,12 @@
     {% csrf_token %}
     {{ form.username }}
     <p></p>
+    {{ form.email }}
+    <p></p>
+    {{ form.first_name }}
+    <p></p>
+    {{ form.last_name }}
+    <p></p>
     {{ form.password1 }}
     <p id="pass1-message"></p>
     {{ form.password2 }}
@@ -61,7 +67,7 @@
     {% endif %}
     <button class="btn btn-lg btn-primary btn-block" id="submit-btn" type="submit">Registrarse</button>
     <br/>
-    <a href="{% url 'iniciar-sesion' %}">Si ya tenés cuenta, logueate</a>
+    <a href="{% url 'iniciar-sesion' %}">Si ya tenés una cuenta, clickeá acá para iniciar sesión.</a>
 </form>
 
 <script>
@@ -71,7 +77,7 @@
         var pass1 = $(this).val();
 
         if (pass1.length < 8) {
-            $('#pass1-message').text("La contraseña debe contener, al menos, 8 caractéres.");
+            $('#pass1-message').text("La contraseña debe contener, al menos, 8 caracteres.");
             $('#submit-btn').attr('disabled', 'disabled');
         }
         else {

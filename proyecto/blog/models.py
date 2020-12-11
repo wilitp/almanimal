@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+from core.image_compress import compress
 
 
 class Blog(models.Model):
@@ -9,7 +10,7 @@ class Blog(models.Model):
     title = models.CharField("Título", max_length=50, default="")
     photo = models.ImageField("Foto de encabezado", upload_to="blog_photo", blank=False, null=False, default="")
     blog_body = RichTextField(verbose_name="Texto")
-    published = models.BooleanField("Publicado", default=True)
+    published = models.BooleanField("Publicado", default=False)
     created_date = models.DateTimeField("Fecha de creación", auto_now_add=True)
     last_updated = models.DateTimeField("Última actualización", auto_now=True)
 
@@ -17,12 +18,18 @@ class Blog(models.Model):
         return f"{self.id}/{self.title}"
 
     def save(self, *args, **kwargs):
+        # Borrando imagen anterior cuando es actualizada
         try:
             this = Blog.objects.get(id=self.id)
             if this.photo != self.photo:
                 this.photo.delete()
         except:
             pass
+
+        # Comprimiendo imagenes
+        if self.photo.size > 1000000:
+            self.photo = compress(photo)
+        
         super(Blog, self).save(*args, **kwargs)
     
 

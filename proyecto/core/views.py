@@ -32,7 +32,7 @@ def contacto(request):
         consulta = request.POST.get('body')
 
         if nombre == "" or apellido == "" or email == "" or asunto == "" or consulta == "" or categoria == "":
-            return HttpResponse("Completá los campos obligatorios")
+            return HttpResponse("Completá los campos obligatorios (*)")
 
         fecha = str(datetime.now())
 
@@ -50,16 +50,17 @@ def contacto(request):
 
             contact = Contact(first_name=nombre, last_name=apellido, email=email, tel=telefono, contact_category=categoria, subject=asunto, body=consulta)
             contact.save()
-        
+
         except SMTPException as e:
             print('There was an error sending an email: ', e)
             messages.error(request, 'Hubo un error enviando tu consulta. Volvé a probar más tarde.')
             return render(request, 'core/contact.html', {'seo_description' : seo_description})
-            
+
         return render(request, 'core/contact.html', {'seo_description' : seo_description})
 
     return render(request, 'core/contact.html', {'seo_description' : seo_description})
 
 def donaciones(request):
+    info_cbu = PaginaDonaciones.objects.get(id=1).info_cbu
     seo_description = PaginaDonaciones.objects.get(id=1).seo_description
-    return render(request, 'core/donaciones.html', {'seo_description' : seo_description})
+    return render(request, 'core/donaciones.html', {'seo_description' : seo_description, "info_cbu": info_cbu})

@@ -1,17 +1,19 @@
 {% extends "core/base.html" %}
 
 
-{% block title %} Adoptar {% endblock title %}
+{% block title %} {{ animal.nombre }} {% endblock title %}
 
 {% block image %} {% load static %} {% static 'core/img/adopcion-bg.jpg'%} {% endblock image %}
 
 {% block cabecera %}
-<h1> Almanimal</h1>
-<p> Una ONG de Mendiolaza</p>
+
+<h1> {{ animal.nombre }} </h1>
+<p> {% if animal.tipo_animal == 'Perro' %} {{ animal.raza_perro }} {% elif animal.tipo_animal == 'Gato' %} {{ animal.raza_gato }} {% else %} {% endif %} </p>
+
 {% if request.user.is_authenticated %}
   <div class="mt-5 w-50 mx-auto">
-    <a href="{% url 'agregar-animal' %}" class="btn btn-primary btn-block">Publicá un animal</a>
-    <br/>
+    <a href="{% url 'agregar-animal' %}" class="btn btn-primary">Publicá un animal</a>
+    <br><br>
   </div>
 {% endif %}
 {% endblock cabecera %}
@@ -36,16 +38,9 @@
       </div>
       {% endif %}
 
-      {% if animal.foto2 %}
-      {% if object.foto2.name == ""%}
-      {% else %}
+      {% if animal.foto2 and animal.foto1 %}
       <div>
         <div style="background-image: url({{object.foto2.url}}); background-repeat: no-repeat;" class="carousel-slide"></div>
-      </div>
-      {% endif %}
-      {% else %}
-      <div>
-        <div style="background-image: url({% static 'adopcion/img/no-image-detail.jpeg' %})" class="carousel-slide"></div>
       </div>
       {% endif %}
 
@@ -61,8 +56,11 @@
     <br/>
 
     <h3>Detalles</h3>
-    <p>Raza: {{object.raza}}</p>
+    {% if not animal.tipo_animal == 'Otro' %}
+    <p>Raza: {% if animal.tipo_animal == 'Perro' %} {{ animal.raza_perro }} {% elif animal.tipo_animal == 'Gato' %} {{ animal.raza_gato }} {% endif %}</p>
+    {% endif %}
     <p>Sexo: {{object.sexo}}</p>
+    <p>Edad: {{object.edad}} {{object.tiempo | lower}} </p>
     <p>Caracter: {{object.caracter}}</p>
 
     <h3>Descripción</h3>
@@ -78,11 +76,15 @@
     <p>Telefono: {{object.telefono}}</p>
     <p>E-mail: {{object.email}}</p>
 
+    <br>
     <small>Creado: {{object.creado}} - </small>
     <small>Actualizado: {{object.actualizado}}</small>
   </div>
-
+ 
 </div>
+
+<br><br>
+<a href="{% url 'adopcion' %}">&larr; Volver</a>
 
 <script>
   window.addEventListener('load', function () {

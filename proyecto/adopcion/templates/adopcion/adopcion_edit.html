@@ -10,8 +10,8 @@
 <p> Encontrá tu compañía ideal</p>
 {% if request.user.is_authenticated %}
   <div class="mt-5 w-50 mx-auto">
-    <a href="{% url 'agregar-animal' %}" class="btn btn-primary btn-block">Publicá un animal</a>
-    <br/>
+    <a href="{% url 'agregar-animal' %}" class="btn btn-primary">Publicá un animal</a>
+    <br><br>
   </div>
 {% endif %}
 {% endblock cabecera %}
@@ -23,20 +23,134 @@
 
     {% if request.user.id == animal.dueño.id %}
 
-    <div class="col-8">
+    <div class="col-12">
 
         <form action="{% url 'editar-animal' animal.pk %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
 
-            {{form.as_p}}
+            <div class="card-deck">
+              <div class="card">
+                  <h5 class="card-header">Detalles</h5>
+                  <div class="card-body">
+                      <label for="id_nombre">Nombre:</label>
+                      {{ form.nombre }}
+                      <br>
+                      <label for="id_tipo_animal">Tipo de animal:</label>
+                      {{ form.tipo_animal }}
+                      <br>
+                      <div id="perro">
+                        <label for="id_raza_perro">Raza:</label>
+                        {{ form.raza_perro }}
+                        <br>
+                      </div>
+                      <div id="gato">
+                        <label for="id_raza_gato">Raza:</label>
+                        {{ form.raza_gato }}
+                        <br>
+                      </div>
+                      <label for="id_sexo">Sexo:</label>
+                      {{ form.sexo }}
+                      <br>
+                      <label for="id_tamaño">Tamaño:</label>
+                      {{ form.tamaño }}
+                      <br>
+                      <label for="id_edad">Edad:</label>
+                      {{ form.edad }}
+                      <br>
+                      <label for="id_tiempo">Tiempo:</label>
+                      {{ form.tiempo }}
+                      <br>
+                      <label for="id_caracter">Caracter:</label>
+                      {{ form.caracter }}
+                      <br>
+                      <label for="id_descripcion">Descripción:</label>
+                      {{ form.descripcion }}
+                  </div>
+              </div>
 
-            <button name="submit" type="submit" class="btn btn-primary">Actualizar</button>
+          </div>
+
+          <br>
+
+          <div class="card-deck">
+
+              <div class="card">
+                  <h5 class="card-header">Veterinaria</h5>
+                  <div class="card-body">
+                      
+                      <div class="form-check col-md-2">
+                          {{ form.vacunado }}
+                          <label class="form-check-label" for="id_vacunado">Vacunado</label>
+                      </div>
+
+                      <div class="form-check col-md-2">
+                          {{ form.desparasitado }}
+                          <label class="form-check-label" for="id_desparasitado">Desparasitado</label>
+                      </div>
+
+                      <div class="form-check col-md-2">
+                          {{ form.castrado }}
+                          <label class="form-check-label" for="id_castrado">Castrado</label>
+                      </div>
+                      <br>
+                      <label for="id_comentario">Comentario:</label>
+                      {{ form.comentario }}
+                  </div>
+              </div>
+
+              <div class="card">
+                  <h5 class="card-header">Contacto</h5>
+                  <div class="card-body">
+                      <label for="id_telefono">Teléfono:</label>
+                      {{ form.telefono }}
+                      <br>
+                      <label for="id_email">Email:</label>
+                      {{ form.email }}
+                  </div>
+              </div>
+
+          </div>
+
+          <br>
+
+          <div class="card-deck">
+
+            <div class="card">
+              <h5 class="card-header">Fotos</h5>
+              <div class="card-body">
+                  {{ form.foto1 }}
+                  <br><br>
+                  {% if animal.foto1 %}
+                  <img src="{{animal.foto1.url}}" alt="animal.nombre" style="object-fit: cover; height: 300px;">
+                  {% else %}
+                  <img src="{% static 'adopcion/img/no-image.png' %}" alt="animal.nombre" style="object-fit: cover; height: 300px;">
+                  {% endif %}
+                  <hr>
+                  {{ form.foto2 }}
+                  {% if animal.foto1 and animal.foto2 %}
+                  <br><br>
+                  <img src="{{animal.foto2.url}}" alt="animal.nombre" style="object-fit: cover; height: 300px;">
+                  {% endif %}
+                  <br><br>
+              </div>
+            </div>
+
+          </div>
+
+          <br>
+
+          <button name="submit" type="submit" class="btn btn-primary btn-block btn-lg">Actualizar</button>
 
         </form>
 
         <br/>
 
-        <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmationModal">Eliminar</button>
+        <button type="submit" class="btn btn-danger btn-block" data-toggle="modal" data-target="#deleteConfirmationModal">Eliminar</button>
+     
+    </div>
+    
+    <br><br>
+    <a href="{% url 'adopcion' %}">&larr; Volver</a>
 
         <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -48,7 +162,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  ¿Estás seguro que querés eliminar "{{ animal }}"?
+                  ¿Estás seguro/a de que querés eliminar a "{{ animal }}" de la página?
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -60,8 +174,6 @@
               </div>
             </div>
           </div>
-
-    </div>
 
     <script type="text/javascript">
       var specialKeys = new Array();
@@ -75,6 +187,44 @@
       var tel = document.getElementById("id_telefono")
       edad.onkeypress = IsNumeric;
       tel.onkeypress = IsNumeric;
+
+      $(document).ready(function() {
+
+        $("#id_vacunado").addClass('form-check-input');
+        $("#id_desparasitado").addClass('form-check-input');
+        $("#id_castrado").addClass('form-check-input');
+
+        var tipo_animal = $("#id_tipo_animal").val();
+        if (tipo_animal == "Perro") {
+            $("#gato").hide();
+            $("#perro").show();
+        }
+        else if (tipo_animal == "Gato") {
+            $("#gato").show();
+            $("#perro").hide();
+        }
+        else {
+            $("#gato").hide();
+            $("#perro").hide();
+        }
+
+        
+        $("#id_tipo_animal").change(function() {
+            var val = $(this).val();
+            if (val == "Perro") {
+                $("#gato").hide();
+                $("#perro").show();
+            }
+            else if (val == "Gato") {
+                $("#gato").show();
+                $("#perro").hide();
+            }
+            else {
+                $("#gato").hide();
+                $("#perro").hide();
+            }
+            });
+        });
     </script>
 
     {% else %}

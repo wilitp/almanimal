@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %} Cambiar contraseña {% endblock title %}
+
+{% block image %} {% load static %} {% static 'core/img/login-bg.jpg'%} {% endblock image %}
+
+{% block cabecera %}
+<h1> Cambiá tu contraseña </h1>
+{% endblock cabecera %}
+
+{% block contenido %}
+
+<script>
+    window.onload = function() {
+        var old_pass = document.getElementById("id_old_password");
+        var new_pass1 = document.getElementById("id_new_password1");
+        var new_pass2 = document.getElementById("id_new_password2");
+        old_pass.placeholder = "Actual contraseña";
+        old_pass.className = "form-control";
+        new_pass1.placeholder = "Nueva contraseña";
+        new_pass1.className = "form-control";
+        new_pass2.placeholder = "Confirmar nueva contraseña";
+        new_pass2.className = "form-control";
+        $('label').remove();
+    };
+</script>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-6 col-sm-offset-3">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Cambiar</button>
+            </form>
+        </div><!--/col-sm-6-->
+    </div><!--/row-->
+</div>
+
+{% endblock %}

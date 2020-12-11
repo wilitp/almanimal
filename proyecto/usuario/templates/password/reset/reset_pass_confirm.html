@@ -1,0 +1,40 @@
+{% extends 'password/reset/base.html' %}
+{% load static %}
+{% block content %}
+
+<script>
+    window.onload = function() {
+        var pass1 = document.getElementById("id_new_password1");
+        var pass2 = document.getElementById("id_new_password2");
+        pass1.placeholder = "Nueva contraseña";
+        pass2.placeholder = "Confirmar contraseña";
+        pass1.className = "form-control";
+        pass2.className = "form-control";
+        $('label').remove();
+    };
+</script>
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="row justify-content-center">
+        <div class="col-md-6 justify-content-center">
+            {{form.new_password1}}
+            <br/>
+            {{form.new_password2}}
+            <br/>
+            <ul>
+                <li>La contraseña no puede ser similar a otra información personal.</li>
+                <li>La contraseña debe contener al menos 8 caractéres.</li>
+                <li>La contraseña no puede ser una comunmente usada.</li>
+                <li>La contraseña no puede ser solamente numérica.</li>
+            </ul>
+            <br/>
+            <center>
+                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Confirmar">
+                <br/>
+            </center>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
