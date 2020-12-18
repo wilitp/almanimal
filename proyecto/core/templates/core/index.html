@@ -3,7 +3,7 @@
 
 {% block title %} Inicio {% endblock title %}
 
-{% block image %} {% load static %} {% if efemerides %} {% for ef in efemerides %} {% if today|date:'d/m' == ef.fecha_festividad|date:'d/m' %} {{ ef.foto.url }} {% else %} {% static 'core/img/inicio-bg.jpeg'%} {% endif %} {% endfor %} {% else %} {% static 'core/img/inicio-bg.jpeg'%} {% endif %} {% endblock image %}
+{% block image %} {% load static %} {% if efemerides %} {% for ef in efemerides %} {% if today|date:'d/m' == ef.fecha_festividad|date:'d/m' %} {{ ef.foto.url }} {% else %} {% if head_image %} {{ head_image.url }} {% else %} {% static 'core/img/inicio-bg.jpeg'%} {% endif %} {% endif %} {% endfor %} {% else %} {% if head_image %} {{ head_image.url }} {% else %} {% static 'core/img/inicio-bg.jpeg'%} {% endif %} {% endif %} {% endblock image %}
 
 {% block cabecera %}
 <h1>Almanimal</h1>

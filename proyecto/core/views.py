@@ -11,14 +11,16 @@ from efemerides.models import Efemerides
 # Create your views here.
 
 def home(request):
+    head_image = PaginaInicio.objects.get(id=1).head_image
     seo_description = PaginaInicio.objects.get(id=1).seo_description
     texto = PaginaInicio.objects.get(id=1).description
     today = datetime.now().date
     efemerides = Efemerides.objects.all()
-    return render(request, 'core/index.html', {'seo_description' : seo_description, 'texto' : texto, 'today' : today, 'efemerides' : efemerides})
+    return render(request, 'core/index.html', {'seo_description' : seo_description, 'texto' : texto, 'today' : today, 'efemerides' : efemerides, "head_image": head_image})
 
 def contacto(request):
 
+    head_image = PaginaContacto.objects.get(id=1).head_image
     seo_description = PaginaContacto.objects.get(id=1).seo_description
 
     if request.method == 'POST':
@@ -54,13 +56,18 @@ def contacto(request):
         except SMTPException as e:
             print('There was an error sending an email: ', e)
             messages.error(request, 'Hubo un error enviando tu consulta. Volvé a probar más tarde.')
-            return render(request, 'core/contact.html', {'seo_description' : seo_description})
+            return render(request, 'core/contact.html', {'seo_description' : seo_description, "head_image": head_image})
 
-        return render(request, 'core/contact.html', {'seo_description' : seo_description})
+        return render(request, 'core/contact.html', {'seo_description' : seo_description, "head_image": head_image})
 
-    return render(request, 'core/contact.html', {'seo_description' : seo_description})
+    return render(request, 'core/contact.html', {'seo_description' : seo_description, "head_image": head_image})
 
 def donaciones(request):
+    head_image = PaginaDonaciones.objects.get(id=1).head_image
     info_cbu = PaginaDonaciones.objects.get(id=1).info_cbu
+    info_mp = PaginaDonaciones.objects.get(id=1).info_mp
+    mp_qr = PaginaDonaciones.objects.get(id=1).mp_qr
+    info_pp = PaginaDonaciones.objects.get(id=1).info_pp
+    pp_qr = PaginaDonaciones.objects.get(id=1).pp_qr
     seo_description = PaginaDonaciones.objects.get(id=1).seo_description
-    return render(request, 'core/donaciones.html', {'seo_description' : seo_description, "info_cbu": info_cbu})
+    return render(request, 'core/donaciones.html', {'seo_description' : seo_description, "info_cbu": info_cbu, "info_mp": info_mp, "mp_qr": mp_qr, "info_pp": info_pp, "pp_qr": pp_qr, "head_image": head_image})

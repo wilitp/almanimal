@@ -3,7 +3,7 @@
 
 {% block title %} Contacto {% endblock title %}
 
-{% block image %} {% load static %} {% static 'core/img/contact-bg.jpg'%} {% endblock image %}
+{% block image %} {% load static %} {% if head_image %} {{ head_image.url }} {% else %} {% static 'core/img/contact-bg.jpg'%} {% endif %} {% endblock image %}
 
 {% block cabecera %}
 <h1>Hablanos</h1>

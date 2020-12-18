@@ -4,7 +4,7 @@
 
 {% block title %} Donaciones {% endblock title %}
 
-{% block image %} {% load static %} {% static 'core/img/donacion-bg.jpg'%} {% endblock image %}
+{% block image %} {% load static %} {% if head_image %} {{ head_image.url }} {% else %} {% static 'core/img/donacion-bg.jpg'%} {% endif %} {% endblock image %}
 
 {% block cabecera %}
 <h1>Danos una pata</h1>
@@ -24,10 +24,13 @@
   <div>
   <h1>A través de Mercado Pago</h1>
   <p>Con Mercado Pago App:</p>
+  {% if mp_qr %}
+  <img src="{% static 'mp_qr.url'%}" alt='QR Mercado Pago'>
+  {% else %}
   <ul>Actualmente no disponible.</ul>
-<!--   <img src="{% static 'core/img/qr_example.png'%}"> -->
+  {% endif %}
   <p>O desde tu computadora: </p>
-  <ul>Actualmente no disponible.</ul>
+  <ul>{{ info_mp | safe }}</ul>
 <!--   <button type="button" class="btn btn-primary" id="btn-abrir-popup">Donar</button>
       <div class="overlay" id="overlay">
         <div class="popup" id="popup">
@@ -49,7 +52,7 @@
   <div>
     <h1>A través de PayPal</h1>
       <p>Ir a PayPal:</p>
-      <ul>Actualmente no disponible.</ul>
+      <ul>{{ info_pp | safe }}</ul>
 <!--       <form action="https://www.paypal.com/donate" method="post" target="_top">
       <input type="hidden" name="cmd" value="_donations" />
       <input type="hidden" name="business" value="manuelmoroncini@gmail.com" />
@@ -59,8 +62,11 @@
       <img alt="" border="0" src="https://www.paypal.com/en_AR/i/scr/pixel.gif" width="1" height="1" />
       </form> -->
       <p>Con QR Paypal:</p>
+      {% if pp_qr %}
+      <img src="{% static 'pp_qr.url'%}">
+      {% else %}
       <ul>Actualmente no disponible.</ul>
-<!--       <img src="{% static 'core/img/qr_paypal.png'%}"> -->
+      {% endif %}
   </div>
 
 </div>

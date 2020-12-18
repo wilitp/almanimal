@@ -5,7 +5,7 @@
 
 {% block title %} Blogs {% endblock title %}
 
-{% block image %} {% load static %} {% static 'core/img/blog-bg.jpg'%} {% endblock image %}
+{% block image %} {% load static %} {% if head_image %} {{ head_image.url }} {% else %} {% static 'core/img/blog-bg.jpg'%} {% endif %} {% endblock image %}
 
 {% block cabecera %}
 <h1>Informate</h1>

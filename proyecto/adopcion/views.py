@@ -26,6 +26,7 @@ class AdopcionListView(ListView):
     def get_context_data(self, **kwargs):
         queries = super(AdopcionListView, self).get_context_data(**kwargs)
         queries['seo_description'] = PaginaAdopcion.objects.get(id=1).seo_description
+        queries['head_image'] = PaginaAdopcion.objects.get(id=1).head_image
         return queries
 
     def get_queryset(self):

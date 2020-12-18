@@ -177,6 +177,7 @@ CKEDITOR_CONFIGS = {
 # EMAIL BACKEND FOR DEVELOPMENT PURPOSES
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'almanimalmendiolaza@gmail.com'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

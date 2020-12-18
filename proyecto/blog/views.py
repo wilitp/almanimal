@@ -17,6 +17,7 @@ class BlogListView(ListView):
     def get_context_data(self, **kwargs):
         queries = super(BlogListView, self).get_context_data(**kwargs)
         queries['seo_description'] = PaginaBlog.objects.get(id=1).seo_description
+        queries['head_image'] = PaginaBlog.objects.get(id=1).head_image
         return queries
 
 class BlogDetailView(DetailView):
