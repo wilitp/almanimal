@@ -32,7 +32,10 @@ class AdopcionListView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         if query:
-            object_list = self.model.objects.filter(tipo_animal=query, publicado=True).order_by('-id')
+            if query == "mis_publicaciones":
+                object_list = self.model.objects.filter(dueño__id=self.request.user.id, publicado=True).order_by('-id')
+            else:
+                object_list = self.model.objects.filter(tipo_animal=query, publicado=True).order_by('-id')
         elif query == None or query == "":
             object_list = self.model.objects.all().order_by('-id').filter(publicado=True)
         else:
@@ -64,7 +67,7 @@ class AdopcionFormView(CreateView):
                 return redirect('adopcion')
             
             else:
-                return HttpResponse('<h1>Hubo un error publicando el animal. Intentá nuevamente más tarde.</h1>')
+                return HttpResponse('<h1>Hubo un error publicando el animal. Intentá nuevamente más tarde.</h1> <br> <a href="/">Volver al inicio.</a>')
 
 class AdopcionUpdateView(UpdateView):
 
