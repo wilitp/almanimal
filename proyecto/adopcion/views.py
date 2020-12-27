@@ -33,7 +33,7 @@ class AdopcionListView(ListView):
         query = self.request.GET.get('q')
         if query:
             if query == "mis_publicaciones":
-                object_list = self.model.objects.filter(dueño__id=self.request.user.id, publicado=True).order_by('-id')
+                object_list = self.model.objects.filter(dueño__id=self.request.user.id).order_by('-id')
             else:
                 object_list = self.model.objects.filter(tipo_animal=query, publicado=True).order_by('-id')
         elif query == None or query == "":

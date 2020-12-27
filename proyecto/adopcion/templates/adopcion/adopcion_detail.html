@@ -1,14 +1,15 @@
 {% extends "core/base.html" %}
 
-
-{% block title %} {{ animal.nombre }} {% endblock title %}
+{% block title %} {% if animal.publicado %} {{ animal.nombre }} {% else %} Animal no disponible {% endif %} {% endblock title %}
 
 {% block image %} {% load static %} {% static 'core/img/adopcion-bg.jpg'%} {% endblock image %}
 
 {% block cabecera %}
 
+{% if animal.publicado %}
 <h1> {{ animal.nombre }} </h1>
 <p> {% if animal.tipo_animal == 'Perro' %} {{ animal.raza_perro }} {% elif animal.tipo_animal == 'Gato' %} {{ animal.raza_gato }} {% else %} {% endif %} </p>
+{% endif %}
 
 {% if request.user.is_authenticated %}
   <div class="mt-5 w-50 mx-auto">
@@ -19,6 +20,8 @@
 {% endblock cabecera %}
 
 {% block contenido %}
+
+{% if animal.publicado %}
 
 <a href="{% url 'adopcion' %}">&larr; Volver</a>
 <br><br>
@@ -102,5 +105,16 @@
     new Glider(document.querySelector('.glider'), settings)
   })
 </script>
+
+{% else %}
+
+<a href="{% url 'adopcion' %}">&larr; Volver</a>
+<br><br>
+
+<center>
+  <h3>Animal no disponible.</h3>
+</center>
+
+{% endif %}
 
 {% endblock contenido %}

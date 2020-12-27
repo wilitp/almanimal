@@ -2,6 +2,8 @@
 
 {% block metatags %}
 
+{% if blog.publicado %}
+
 <meta property="og:type" content="article" />
 
 <meta property="og:url" content="{{ request.build_absolute_uri }}" />
@@ -28,20 +30,26 @@
 
 <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ blog.photo.url }}" />
 
+{% endif %}
+
 {% endblock %}
 
-{% block title %} {{ blog.title | title }} {% endblock title %}
+{% block title %} {% if blog.published %} {{ blog.title | title }} {% else %} Blog no disponible {% endif %} {% endblock title %}
 
-{% block image %} {% load static %} {{ blog.photo.url }} {% endblock image %}
+{% block image %} {% load static %} {% if blog.published %} {{ blog.photo.url }} {% else %} {% static 'adopcion/img/no-image-detail.jpeg' %} {% endif %} {% endblock image %}
 
 {% block cabecera %}
+{% if blog.published %}
 <h1> {{ blog.title }}</h1>
+{% endif %}
 {% if request.user.is_superuser or request.user.id == blog.author.id %}
 <a href="{% url 'admin:blog_blog_change' blog.id %}" class="btn btn-primary">Editar</a>
 {% endif %}
 {% endblock cabecera %}
 
 {% block contenido %}
+
+{% if blog.published %}
 
     <!-- Page Content -->
   <div class="container">
@@ -112,5 +120,15 @@
   </div>
   <!-- /.container -->
 
+{% else %}
+
+<a href="{% url 'blog' %}">&larr; Volver</a>
+<br><br>
+
+<center>
+  <h3>Blog no disponible.</h3>
+</center>
+
+{% endif %}
 
 {% endblock contenido %}

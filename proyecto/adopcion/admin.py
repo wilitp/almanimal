@@ -9,7 +9,8 @@ from .models import Animal
 class AnimalAdmin(admin.ModelAdmin):
 
     readonly_fields  = ['actualizado', 'creado', 'image_tag', 'image_tag2']
-    list_display = ['nombre', 'tipo_animal', 'raza_perro', 'raza_gato', 'creado', 'publicado', 'image_tag']
+    list_display = ['id', 'nombre', 'tipo_animal', 'raza_perro', 'raza_gato', 'creado', 'publicado', 'image_tag']
+    search_fields = ['id', 'nombre', 'tipo_animal', 'raza_perro', 'raza_gato']
     list_filter = ('tipo_animal', 'raza_perro', 'raza_gato', 'creado', 'publicado')
     actions = ['mark_as_published', 'mark_as_not_published']
     fieldsets = (
