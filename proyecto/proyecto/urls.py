@@ -35,7 +35,7 @@ admin.site.index_title = "Bienvenido a Administración de Almanimal"
 
 urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
-    path('admin/', admin.site.urls),
+    path('administracion/', admin.site.urls),
 
 
     # Core app urls

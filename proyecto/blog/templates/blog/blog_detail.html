@@ -37,7 +37,7 @@
 {% block cabecera %}
 <h1> {{ blog.title }}</h1>
 {% if request.user.is_superuser or request.user.id == blog.author.id %}
-<a href="{% url 'admin:blog_blog_change' blog.id %}" class="btn btn-dark">Editar</a>
+<a href="{% url 'admin:blog_blog_change' blog.id %}" class="btn btn-primary">Editar</a>
 {% endif %}
 {% endblock cabecera %}
 
