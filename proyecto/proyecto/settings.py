@@ -24,8 +24,9 @@ SECRET_KEY = 'q8l4u%6*#8@ms044y*m4ia7)!wekws=109g)u$cy63i6_+m1(('
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["179.43.121.242", "fundacionalmanimalmendiolaza.com.ar"]
 
 
 # Application definition
