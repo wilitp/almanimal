@@ -18,7 +18,7 @@ from .views import AdopcionListView, AdopcionDetailView, AdopcionFormView, Adopc
 
 urlpatterns = [
     
-    path('adopcion/', AdopcionListView.as_view(), name='adopcion'),
+    path('adopcion', AdopcionListView.as_view(), name='adopcion'),
     path('adopcion/<int:pk>', AdopcionDetailView.as_view(), name='adopcion-detail'),
     path('adopcion/agregar-animal', AdopcionFormView.as_view(), name='agregar-animal'),
     path('adopcion/<int:pk>/editar/', AdopcionUpdateView.as_view(), name='editar-animal'),
