@@ -71,3 +71,6 @@ def donaciones(request):
     pp_qr = PaginaDonaciones.objects.get(id=1).pp_qr
     seo_description = PaginaDonaciones.objects.get(id=1).seo_description
     return render(request, 'core/donaciones.html', {'seo_description' : seo_description, "info_cbu": info_cbu, "info_mp": info_mp, "mp_qr": mp_qr, "info_pp": info_pp, "pp_qr": pp_qr, "head_image": head_image})
+
+def politica_privacidad(request):
+    return render(request, 'core/politica-privacidad.html')

@@ -21,6 +21,7 @@ from . import views
 urlpatterns = [
 
     path('', views.home, name='home'),
-    path('contacto/', views.contacto, name='contacto'),
-    path('donaciones/', views.donaciones, name='donaciones'),
+    path('contacto', views.contacto, name='contacto'),
+    path('donaciones', views.donaciones, name='donaciones'),
+    path('politica-de-privacidad', views.politica_privacidad, name="privacidad"),
 ]
