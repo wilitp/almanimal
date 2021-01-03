@@ -9,6 +9,8 @@ services:
     expose:
       - "8000"
     volumes:
+      - .:/code
+      - .db_data/db.sqlite3:/db.sqlite3
       - static:/app/static
       - media:/app/media
 
@@ -21,7 +23,7 @@ services:
     depends_on:
       - app
     ports:
-      - "8027:80"
+      - "8026:80"
 
 volumes:
   static:
